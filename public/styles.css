@@ -187,6 +187,14 @@ Menu
   margin: 60px;
   margin-bottom: 30px;
 }
+.bottom-bar{
+  font-size: 1.0rem;
+  text-align: center;
+  padding-top:30px;
+}
+.footer-text{
+  color:black;
+}
 .menu {
   padding: 5rem 0;
 }
@@ -264,7 +272,7 @@ Menu
 .item-content {
   margin-bottom: 0;
   padding-top: 1rem;
-  font-size: medium;
+  font-size:x-small;
   color:#222
 }
 .fa-cart-shopping {

@@ -239,7 +239,7 @@ const menu = [
   },
   {
     id: 25,
-    title: "Full-Tray Chinese Chicken Salad",
+    title: "Full-Tray &nbsp&nbsp&nbsp Chinese Chicken Salad",
     category: "Salad",
     price: 22.99,
     img: "./images/item-10.jpeg",
@@ -248,7 +248,7 @@ const menu = [
   },
   {
     id: 26,
-    title: "Spam Musubi (2-piece)",
+    title: "Spam Musubi &nbsp (2-piece)",
     category: "Sides",
     price: 22.99,
     img: "./images/item-10.jpeg",
