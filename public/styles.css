@@ -182,7 +182,7 @@ Menu
   margin: auto;
 }
 .topBarFlex{
-  font-size: 2.5rem;
+  font-size: 1.75rem;
   justify-content: space-between;
   margin: 60px;
   margin-bottom: 30px;
@@ -265,7 +265,7 @@ Menu
   margin-bottom: 0;
   padding-top: 1rem;
   font-size: medium;
-  color:#222
+  color:var(--clr-gold)
 }
 .fa-cart-shopping {
   font-size: x-large;
