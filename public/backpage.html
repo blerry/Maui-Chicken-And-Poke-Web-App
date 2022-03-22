@@ -15,9 +15,21 @@
   <body>
     
     <section class="backpage">
-      
+      <h1>BackPage</h1>
+
+      <label for="locations">Choose a Location:</label>
+      <select name="locations" id="locations">
+        <option value="one">one</option>
+        <option value="two">two</option>
+        <option value="three">three</option>
+      </select>
+      <label for="logintext">Log In:</label>
+      <input type="text" id="login_input">
+      <button id="loginButton">Log In</button>
     </section>
+    <div id="hiddenbackpage">
+    </div>
     <!-- javascript -->
-    <script src="app.js"></script>
+    <script src="backpage.js" type = "module"></script>
   </body>
 </html>
