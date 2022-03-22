@@ -255,20 +255,20 @@ Menu
 .item-text {
   margin-bottom: 0;
   padding-top: 1rem;
-  font-size:large;
+  font-size: medium;
   color:black
 }
 .item-content {
   margin-bottom: 0;
   padding-top: 1rem;
-  font-size:x-small;
+  font-size: small;
   color:#222
 }
-.fa-cart-shopping i {
-  font-size: medium;
-  position: fixed;
-  top: 0px;
-  right: 0px;
+.fa-cart-shopping {
+  font-size: large;
+  position: absolute;
+  top: 120px;
+  right: 100px;
 }
 
 @media screen and (min-width: 768px) {
