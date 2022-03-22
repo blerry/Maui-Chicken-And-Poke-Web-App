@@ -258,11 +258,17 @@ Menu
   font-size:large;
   color:black
 }
-.item-content{
+.item-content {
   margin-bottom: 0;
   padding-top: 1rem;
   font-size:x-small;
   color:#222
+}
+.fa-cart-shopping i {
+  font-size: medium;
+  position: fixed;
+  top: 0px;
+  right: 0px;
 }
 
 @media screen and (min-width: 768px) {
