@@ -170,6 +170,14 @@ main {
   display: grid;
   place-items: center;
 }
+.parallax{
+  background-image: url("images/banner.png");
+  height:100%;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 /*
 =============== 
 Menu
@@ -186,6 +194,14 @@ Menu
   justify-content: space-between;
   margin: 60px;
   margin-bottom: 30px;
+}
+.bottom-bar{
+  font-size: 1.0rem;
+  text-align: center;
+  padding-top:30px;
+}
+.footer-text{
+  color:black;
 }
 .menu {
   padding: 5rem 0;
