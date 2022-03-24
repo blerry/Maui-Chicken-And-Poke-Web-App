@@ -299,10 +299,12 @@ function diplayMenuItems(menuItems) {
 
     return `<article class="menu-item">
           <img src=${item.img} alt=${item.title} class="photo" />
-          <div class="item-info">
+          <div class="item-info" id="${item.id}">
             <header>
               <h4>${item.title}</h4>
               <h4 class="price">$${item.price}</h4>
+              <!-- You add a quantity and add button -->
+              
             </header>
             <p class="item-text">
               ${item.desc}
