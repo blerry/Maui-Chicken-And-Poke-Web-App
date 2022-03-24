@@ -170,6 +170,14 @@ main {
   display: grid;
   place-items: center;
 }
+.parallax{
+  background-image: url("images/banner.png");
+  height:100%;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 /*
 =============== 
 Menu
