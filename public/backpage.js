@@ -17,9 +17,24 @@ const firebaseConfig = initializeApp({
   
     measurementId: "G-81FFTX4SBY"
 });
+// read JSON object from file
+fs.readFile('order.json', 'utf-8', (err, data) => {
+    if (err) {
+        throw err;
+    }
+
+    // parse JSON object
+    const user = JSON.parse(data.toString());
+
+    // print JSON object
+    console.log(user);
+});
+
+//get the location by doing something like
+var location = user.location;
+
 
 //Backpage Login
-
 //These are required instances when using database
 //const app = initializeApp(firebaseConfig);
 //initializeApp();
@@ -31,7 +46,7 @@ loginButton.addEventListener('click',()=>{
     let loginText = document.getElementById("login_input").value;
     if(location == "one" && loginText=="111"){
         alert("successful log in");
-        hiddenBackPage.innerHTML= ordersPage();
+        hiddenBackPage.innerHTML= ordersPage1();
     }
     else if(location == "two" && loginText=="222"){
         alert("successful log in");
@@ -46,8 +61,7 @@ loginButton.addEventListener('click',()=>{
     }
 }); 
 //This function "returns" the orders and database stuff
-
-const ordersPage= ()=> `<h2>Location</h2>
+const ordersPage1= ()=> `<h2>Location</h2>
                         <h3>Order1</h3>
                         <p>description and stuff</p>
                         <h3>Order2</h3>
