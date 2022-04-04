@@ -178,6 +178,12 @@ main {
   background-repeat: no-repeat;
   background-size: cover;
 }
+.innerParallax{
+  height:500px;
+  background-image:url("images/bg.png");
+  font-size:36px;
+  text-align:center;
+}
 /*
 =============== 
 Menu
