@@ -268,32 +268,39 @@ const menu = [
 
   //cart.push(menu[29]);
   //button clicked. Find the button 
-  const menuItem = document.getElementById().addEventListener("click", function() {
+  const menuItem = document.getElementById("").addEventListener("click", function() {
     let item = {
         itemID: 0,
-        title = null,
+        title: "",
         quantity: 0
     }
 
     if(menu[menuItem].id == '1'){
     item.itemID = 1;
-    item.quantity = document.getElementById().value; 
+    item.quantity = document.getElementById("").value; 
     cart.push(item);
     }
   });
 
-  const fs = require('fs');
-  fs.writeFile('order.json', json, 'utf8', callback); //required arguments
-  fs.readFile('order.json','utf8', function readFileCallBack(err,data){ //reading file
-      if(err){
-          console.log(err);
-      }
-      else{
-          obj = JSON.parse(data);
-          obj.push(cart); // adds cart data to jSON
-          json = JSON.stringify(obj); // make it readable
-          fs.writeFile('order.json', json, 'utf8', callback);
-      }
+  function setCookie(cname, cvalue, exdays) {
+    const d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    let expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
   }
-  const data = JSON.stringify(cart);
+  function getCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for(let i = 0; i <ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
   
