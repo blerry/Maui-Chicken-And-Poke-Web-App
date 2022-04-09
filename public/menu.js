@@ -314,6 +314,16 @@ function diplayMenuItems(menuItems) {
               ${item.content}
             </p>
           </div>
+          <div class="quanitiyInfo">
+            <select name="quantity" id="${item.id}quantity">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <button id="${item.id}addBtn">Add to Cart</button>
+          </div>
         </article>`;
   });
   displayMenu = displayMenu.join("");
@@ -361,3 +371,5 @@ function displayMenuButtons() {
     });
   });
 }
+
+

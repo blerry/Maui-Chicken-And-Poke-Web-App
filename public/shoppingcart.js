@@ -265,42 +265,46 @@ const menu = [
   var cart = [];
 
 
-
+  function resolveAfter2Seconds(x) { //We have to wait for menu elements to load first
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve(x);
+      }, 2000);
+    });
+  }
   //cart.push(menu[29]);
   //button clicked. Find the button 
-  const menuItem = document.getElementById("").addEventListener("click", function() {
-    let item = {
-        itemID: 0,
-        title: "",
-        quantity: 0
-    }
 
-    if(menu[menuItem].id == '1'){
-    item.itemID = 1;
-    item.quantity = document.getElementById("").value; 
-    cart.push(item);
+  // Getting the menu item ID to find the elements then
+  // Adding Event Listeners to all menuItems
+  // And Passing the parameter menu[i] which is the item to be added to shopping cart
+  // Item is added to shopping cart when add to cart button is clicked. (look at addToCart())
+  function addToCart(itemSelected) {
+    let quantitySelected = document.getElementById(itemSelected.id.toString+"quantity").value; // id="${item.id}quantity">
+    let itemToAdd = {
+        itemID: item.id,
+        title: item.title,
+        quantity: quantitySelected
     }
-  });
-
-  function setCookie(cname, cvalue, exdays) {
-    const d = new Date();
-    d.setTime(d.getTime() + (exdays*24*60*60*1000));
-    let expires = "expires="+ d.toUTCString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    cart.push(itemToAdd);
+    setCookie(cart);
   }
-  function getCookie(cname) {
-    let name = cname + "=";
-    let decodedCookie = decodeURIComponent(document.cookie);
-    let ca = decodedCookie.split(';');
-    for(let i = 0; i <ca.length; i++) {
-      let c = ca[i];
-      while (c.charAt(0) == ' ') {
-        c = c.substring(1);
-      }
-      if (c.indexOf(name) == 0) {
-        return c.substring(name.length, c.length);
-      }
+
+  const menuItemElements = new Array(menu.length);
+  async function addEventListeners(){
+    for (let i = 0; i < menu.length; i++){
+      await resolveafter2Seconds(10);
+      let addItemId = menu[i].id + "addBtn" // <button id="${item.id}addBtn">
+      menuItemElements[i] = document.getElementById(addItemId).addEventListener("click",addToCart(menu[i]));
     }
-    return "";
+  }
+  function setCookie(cart) {
+    //document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    document.cookie = JSON.stringify(cart);
+  }
+  function getCookie() {
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let cart = JSON.parse(decodedCookie);
+    return cart;
   }
   
