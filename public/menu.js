@@ -372,4 +372,74 @@ function displayMenuButtons() {
   });
 }
 
+const menuItemElements = new Array(menu.length);
+
+  var cart = [];
+
+
+
+  //cart.push(menu[29]);
+  //button clicked. Find the button 
+
+  // Getting the menu item ID to find the elements then
+  // Adding Event Listeners to all menuItems
+  // And Passing the parameter menu[i] which is the item to be added to shopping cart
+  // Item is added to shopping cart when add to cart button is clicked. (look at addToCart())
+  function setCookie(cart) {
+    const date = new Date();
+    date.setTime(date.getTime() + (30*24*60*60*1000));//30 days,24hours,60 minutes
+    let expires = "expires=" + date.toUTCString();
+    //let cookie = name, '=', JSON.stringify(cart), '; domain=', window.location.host.toString(), '; path=/menu.html;'.join('');
+    //name, value, expiration
+    let cookie = "order" + "=" + JSON.stringify(cart) + ";" + expires + ";path=/";
+    //document.cookie = JSON.stringify(cart);
+    document.cookie = cookie;
+    console.log(document.cookie);
+  }
+  // function getCookie() {
+  //   //let decodedCookie = decodeURIComponent(document.cookie);
+  //   //let cart = JSON.parse(decodedCookie);
+  //   let name = "order"
+  //   let result = document.cookie.match(new RegExp(name + '=([^;]+)'));
+  //   result && (result = JSON.parse(result[1]));
+  //   return cart;
+  // }
+
+  function addToCart(itemSelected) {
+    //itemSelected = (menu[i]);
+    let quantitySelected = document.getElementById(itemSelected.id+"quantity").value; // id="${item.id}quantity">
+    console.log(quantitySelected);
+    let itemToAdd = {
+        itemID: itemSelected.id,
+        title: itemSelected.title,
+        quantity: quantitySelected
+    }
+    cart.push(itemToAdd);
+    console.log(cart[0]);
+    setCookie(cart);
+  }
+
+
+  async function addEventListeners(){
+    const resolveAfter2Seconds = (x) => { //We have to wait for menu elements to load first
+      return new Promise(resolve => {
+        setTimeout(() => {
+          resolve(x);
+        }, 2000);
+      });
+    }
+    await resolveAfter2Seconds(10);
+    for (let i = 0; i < menu.length; i++){
+      let addItemId = menu[i].id + "addBtn" // <button id="${item.id}addBtn">
+      menuItemElements[i] = document.getElementById(addItemId).addEventListener("click", () => { addToCart(menu[i]); });
+      //console.log(menu[i]);
+    }
+
+    //Get Cookies after even Listerners
+    //getCookie();
+
+  }
+
+  addEventListeners();
+
 
