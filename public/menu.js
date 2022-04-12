@@ -410,8 +410,10 @@ const menuItemElements = new Array(menu.length);
     let quantitySelected = document.getElementById(itemSelected.id+"quantity").value; // id="${item.id}quantity">
     console.log(quantitySelected);
     let itemToAdd = {
-        itemID: itemSelected.id,
+        id: itemSelected.id,
         title: itemSelected.title,
+        img: itemSelected.img,
+        price: itemSelected.price,
         quantity: quantitySelected
     }
     cart.push(itemToAdd);
