@@ -20,6 +20,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
+//Use for Deleting an item
 function setCookie(cart) {
   const date = new Date();
   date.setTime(date.getTime() + (30*24*60*60*1000));//30 days,24hours,60 minutes
@@ -57,10 +58,13 @@ var cart = getCookie();
 
 const db = getFirestore();
 
+var total = 0.0;
 //Time to Load these to the page.
 
 function displayCartItems(cart){
   let displayCart = cart.map(function (item) {
+    total += item.quantity * item.price;
+    //total += item.price;
     // console.log(item);
     return `<article class="menu-item">
           <img src=${item.img} alt=${item.title} class="photo" />
@@ -82,8 +86,10 @@ function displayCartItems(cart){
 
 window.addEventListener("DOMContentLoaded", () => {
   displayCartItems(cart);
-  //          ADD Event Listeners after cart is displayed here
+  //          ADD Event Listeners after cart is displayed here for removing items
 
+  //Pass Total after displaying Cart
+  document.getElementById("orderTotal").innerHTML = "Total: $ " + total;
 });
 
 
@@ -91,22 +97,30 @@ window.addEventListener("DOMContentLoaded", () => {
 
 //Add Data to the database to add to Order Queue
 async function addData(db){
-  const dataToAdd = await setDoc(doc(db, "cities", "LA"), {
-    //Adding the Cart data here
-    name: "Long Beach",
-    state: "CA",
-    country: "USA"
-  });
+  const notes = document.getElementById("notes").value;
+  const name = document.getElementById("name").value;
+  const location = document.getElementById("locations").value;
+  cart.name = name; //Adding Name of person order to cart
+  cart.notes = notes;
+  const dataToAdd = await setDoc(doc(db, location, "orders"), {cart}); //order is an object array {[]}
 }
+// Receipt Creation is here
+const loadReceipt = () => {
+  `<h2>Thank You for Shopping</h2>
+  <h2>Please wait for your order to be Called.</h2>`
+};
 
 const checkOutButton = document.getElementById("checkoutBtn").addEventListener("click",
 function loadCheckOutPage(){
   if(confirm("Proceed to checkout? ")){
     addData(db);
-    return "";
+    const receiptHTML = document.getElementById("receiptHTML");
+    const displayReceipt = loadReceipt;
+    displayReceipt = displayReceipt.join("");
+    receiptHTML.innerHTML = displayReceipt;
+    return ""
   }
   else{
     return;
   }
 });
-

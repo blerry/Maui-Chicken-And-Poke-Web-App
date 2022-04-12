@@ -28,9 +28,11 @@
       <div class="section-center">
       </div>
         </section>
+        <p>Name for Order: </p>
+        <input type="text" id="name" name="notes">
         <p>Notes: </p>
         <input type="text" id="notes" name="notes">
-        <h2>Total: $ 0.00</h2>
+        <h2 id="orderTotal">Total: $ 0.00</h2>
         <!-- change later to load in check out page? -->
         <label for="locations">Choose a Location:</label>
       <select name="locations" id="locations">
@@ -38,8 +40,11 @@
         <option value="two">two</option>
         <option value="three">three</option>
       </select>
-        <button id="checkoutBtn" onclick="loadCheckOutPage()">CheckOut</button>
+        <button id="checkoutBtn" >CheckOut</button>
         
+        <div id="receiptHTML">
+
+        </div>
   </body>
   
   <script src="shoppingcart.js" type="module"></script>

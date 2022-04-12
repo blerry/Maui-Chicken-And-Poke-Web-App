@@ -1,6 +1,6 @@
 // Initialize Cloud Firestore through Firebase
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-app.js";
-import { getFirestore } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-firestore.js";
+import { getFirestore, doc,onSnapshot, getDoc, collection } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-firestore.js";
 
 const firebaseConfig = initializeApp({
     apiKey: "AIzaSyC095wM6mpg04Sm8I_whR8h-3QXSe22-b4",
@@ -18,20 +18,20 @@ const firebaseConfig = initializeApp({
     measurementId: "G-81FFTX4SBY"
 });
 // read JSON object from file
-fs.readFile('order.json', 'utf-8', (err, data) => {
-    if (err) {
-        throw err;
-    }
+// fs.readFile('order.json', 'utf-8', (err, data) => {
+//     if (err) {
+//         throw err;
+//     }
 
-    // parse JSON object
-    const user = JSON.parse(data.toString());
+//     // parse JSON object
+//     const user = JSON.parse(data.toString());
 
-    // print JSON object
-    console.log(user);
-});
+//     // print JSON object
+//     console.log(user);
+// });
 
 //get the location by doing something like
-var location = user.location;
+//var location = user.location;
 
 
 //Backpage Login
@@ -40,41 +40,61 @@ var location = user.location;
 //initializeApp();
 const db = getFirestore();
 const loginButton = document.getElementById("loginButton");
+const location = document.getElementById("locations").value;
+var orderQueueHTML = ``;
 loginButton.addEventListener('click',()=>{
     var hiddenBackPage = document.getElementById("hiddenbackpage");
-    let location =document.getElementById("locations").value;
-    let loginText = document.getElementById("login_input").value;
-    if(location == "one" && loginText=="111"){
+    //const location = document.getElementById("locations").value;
+    const loginText = document.getElementById("login_input").value;
+
+    getData(db,location);
+
+    if(location == "location1" && loginText=="111"){
         alert("successful log in");
-        hiddenBackPage.innerHTML= ordersPage1();
+        hiddenBackPage.innerHTML= orderQueueHTML;
     }
-    else if(location == "two" && loginText=="222"){
+    else if(location == "location2" && loginText=="222"){
         alert("successful log in");
-        hiddenBackPage.innerHTML= ordersPage();
+        hiddenBackPage.innerHTML= orderQueueHTML;
     }
-    else if(location == "three" && loginText=="333"){
+    else if(location == "location3" && loginText=="333"){
         alert("successful log in");
-        hiddenBackPage.innerHTML= ordersPage();
+        hiddenBackPage.innerHTML= orderQueueHTML;
     }
     else{
         alert("invalid log in");
     }
 }); 
+
+const getData = onSnapshot(doc(db, location, "orders"), (doc) => {
+    console.log("Current data: ", doc.data());
+    //const ord = JSON.stringify(doc.data());
+    const orders = doc.data()["cart"];
+    //console.log(orders);
+    for (let i = 0; i<orders.length; i++){
+        // console.log(orders[i].title);
+        orderQueueHTML += `<h2>Location</h2><h3>Order1</h3><p>${orders[i].title}</p><h3>Order2</h3><p>item 2 description and stuff</p>`;
+       
+    }
+    //console.log(orderQueueHTML);
+    
+});
+
 //This function "returns" the orders and database stuff
-const ordersPage1= ()=> `<h2>Location</h2>
-                        <h3>Order1</h3>
-                        <p>description and stuff</p>
-                        <h3>Order2</h3>
-                        <p>item 2 description and stuff</p>`;
+const ordersPage = () => {
+                        getData();
+                        
+                        };
 // document.addEventListener('readystatechange',function(){
 //     if (document.readyState === "complete") {
 //     login();
 //     }
 // });
 //Here's an example of getting data from database
-async function getdata(db) {
-    const stuff = collection(db, 'test');
-    const stuffSnapshot = await getDocs(citiesCol);
-    const stuffList = citySnapshot.docs.map(doc => doc.data());
-    return stuffList;
-  }
+// async function getData(db, loc) {
+//     const location = loc;
+//     const stuff = collection(db, location);
+//     const stuffSnapshot = await getDocs("orders");
+//     const stuffList = stuffSnapshot.docs.map(doc => doc.data());
+//     return stuffList;
+//   }
