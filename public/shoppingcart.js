@@ -271,7 +271,7 @@ const menu = [
   const menuItem = document.getElementById().addEventListener("click", function() {
     let item = {
         itemID: 0,
-        title = null,
+        title: "",
         quantity: 0
     }
 
@@ -294,6 +294,16 @@ const menu = [
           json = JSON.stringify(obj); // make it readable
           fs.writeFile('order.json', json, 'utf8', callback);
       }
-  }
+  });
   const data = JSON.stringify(cart);
   
+var fs = require("fs");
+var jsonObj = {
+    id: 1,
+    item: "chicken 1"
+};
+
+fs.writeFile("./order.json", JSON.stringify(jsonObj, null, 2), (err) => {
+    if (err) { console.error(err); return; };
+    console.log("Created a JSOn file");
+});
