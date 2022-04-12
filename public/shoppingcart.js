@@ -88,16 +88,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
 
 //Function that displays CheckoutPage if clicked. 
-function loadCheckOutPage(){
-  if(confirm("Proceed to checkout? ")){
-    return "";
-  }
-  else{
-    return;
-  }
-}
 
-
+//Add Data to the database to add to Order Queue
 async function addData(db){
   const dataToAdd = await setDoc(doc(db, "cities", "LA"), {
     //Adding the Cart data here
@@ -106,4 +98,17 @@ async function addData(db){
     country: "USA"
   });
 }
-  addData(db);
+
+const checkOutButton = document.getElementById("checkoutBtn").addEventListener("click",
+function loadCheckOutPage(){
+  if(confirm("Proceed to checkout? ")){
+    addData(db);
+    return "";
+  }
+  else{
+    return;
+  }
+});
+
+
+
