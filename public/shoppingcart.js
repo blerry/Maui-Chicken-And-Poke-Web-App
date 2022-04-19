@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-app.js";
-import { getFirestore,doc,setDoc } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-firestore.js";
+import { getFirestore,doc,setDoc,getDoc } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyC095wM6mpg04Sm8I_whR8h-3QXSe22-b4",
@@ -20,8 +20,8 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
-//Use for Deleting an item
-function setCookie(cart) {
+//Change for Deleting an item
+function deleteCookie(cart) {
   const date = new Date();
   date.setTime(date.getTime() + (30*24*60*60*1000));//30 days,24hours,60 minutes
   let expires = "expires=" + date.toUTCString();
@@ -86,29 +86,40 @@ function displayCartItems(cart){
 
 window.addEventListener("DOMContentLoaded", () => {
   displayCartItems(cart);
-  //          ADD Event Listeners after cart is displayed here for removing items
+  //ADD Event Listeners after cart is displayed here for removing items
 
   //Pass Total after displaying Cart
   document.getElementById("orderTotal").innerHTML = "Total: $ " + total;
 });
-
-
-//Function that displays CheckoutPage if clicked. 
-
-//Add Data to the database to add to Order Queue
-async function addData(db){
-  const notes = document.getElementById("notes").value;
-  const name = document.getElementById("name").value;
-  const location = document.getElementById("locations").value;
-  cart.name = name; //Adding Name of person order to cart
-  cart.notes = notes;
-  const dataToAdd = await setDoc(doc(db, location, "orders"), {cart}); //order is an object array {[]}
-}
 // Receipt Creation is here
 const loadReceipt = () => {
   `<h2>Thank You for Shopping</h2>
   <h2>Please wait for your order to be Called.</h2>`
 };
+
+//Use setTimeout to continue to add the order to database
+async function addData(db){ //Add Data to the database to add to Order Queue
+  const notes = document.getElementById("notes").value;
+  const name = document.getElementById("name").value;
+  const locate = document.getElementById("locations").value;
+  //cart.name = name; //Adding Name of person order to cart
+  //cart.notes = notes;
+  let orderNum = 0;
+  const getOrderNum = async() => {
+      let docSnap = await getDoc(doc(db,locate,"orderCount"));
+      orderNum = docSnap.data().count;
+      console.log("The number" + orderNum);
+    };
+  getOrderNum();
+  setTimeout(()=>{ 
+    console.log("Order # " + orderNum);//Rest of code goes here because of asyncy getOrderNum
+    const updateOrderCount = async() => {await setDoc(doc(db,locate,"orderCount"),{count:orderNum+1})};
+    updateOrderCount(); //Increment OrderNumber after we got it.
+    cart.unshift({name: name,notes: notes,total:total});//Adding order details to beginning of cart
+    const dataToAdd = async() => {await setDoc(doc(db, locate, orderNum.toString()), {cart}) }; //order is an object array {[]}
+    dataToAdd(); // need to call
+  }, 1000);//must wait 1sec to get the OrderNumber
+}
 
 const checkOutButton = document.getElementById("checkoutBtn").addEventListener("click",
 function loadCheckOutPage(){
@@ -116,9 +127,9 @@ function loadCheckOutPage(){
     addData(db);
     const receiptHTML = document.getElementById("receiptHTML");
     const displayReceipt = loadReceipt;
-    displayReceipt = displayReceipt.join("");
+    //displayReceipt = displayReceipt.join("");
     receiptHTML.innerHTML = displayReceipt;
-    return ""
+    return "";
   }
   else{
     return;
