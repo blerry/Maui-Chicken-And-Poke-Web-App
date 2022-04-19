@@ -1,6 +1,6 @@
 // Initialize Cloud Firestore through Firebase
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-app.js";
-import { getFirestore, doc,onSnapshot, getDoc, collection } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-firestore.js";
+import { getFirestore, doc,onSnapshot, getDoc, collection, query, where } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-firestore.js";
 
 const firebaseConfig = initializeApp({
     apiKey: "AIzaSyC095wM6mpg04Sm8I_whR8h-3QXSe22-b4",
@@ -41,13 +41,72 @@ const firebaseConfig = initializeApp({
 const db = getFirestore();
 const loginButton = document.getElementById("loginButton");
 const location = document.getElementById("locations").value;
+var orderNumber = 0;
+var orderQueueHTMLArray = [`<h2>Location: ${location}</h2>`];
 var orderQueueHTML = ``;
+const getOrderNumber = onSnapshot(doc(db,location, "orderCount"), (doc) =>{
+    orderNumber = doc.data().count;
+    console.log("Order Count: ", doc.data().count);
+});
+
+//Add Event click listeners to delete the items from order Queue
+
+// const getData = onSnapshot(doc(db, location, "orders"), (doc) => {
+    
+//     console.log("Current data: ", doc.data());
+//     //const ord = JSON.stringify(doc.data());
+//     const itemsInOrder = doc.data()["cart"]; //array
+//     orderQueueHTML += `<h3>Order #:  ${orderNumber}, Name: ${itemsInOrder[0].name}</h3><p>Notes ${itemsInOrder[0].notes}</p><button id= ${orderNumber}>DELETE</button>`;
+//     //console.log(orders);
+//     for (let i = 0; i<itemsInOrder.length; i++){
+//         // console.log(orders[i].title);
+//         orderQueueHTML += `<p>${itemsInOrder[i].title}</p>`;
+//     }
+//     //console.log(orderQueueHTML);
+    
+// });
+
+//Better Version
+const q = collection(db, location); // q is Query
+const unsubscribe = onSnapshot(q, (querySnapshot) => {
+  var orders = [];
+  querySnapshot.forEach((doc) => {
+      if(doc.id != "orderCount"){
+      //let itemsInOrder = doc.data()["cart"];
+      //console.log(itemsInOrder[0]);
+      orders.push(doc.data()["cart"]);//push orders. [0] = doc.data()["cart"]
+      //update orderQueue HTML to fit new order
+      orderQueueHTMLArray.push(`<h3>Order #:  ${doc.id}, Name: ${doc.data()["cart"][0].name}</h3><p>Notes ${doc.data()["cart"][0].notes}</p><button id= ${doc.id}>DELETE</button>`);
+      for(items in doc.data()["cart"]){
+          orderQueueHTMLArray.push(`<p></p>`);
+      }
+      //add Order details: Price+Title
+      //add EventListener
+      //const removeOrderButton = document.getElementById(doc.id.toString());
+    //   removeOrderButton.addEventListener('click', ()=> {
+    //       //delete from html string, delete from database, update html
+    //   });
+      }
+  });
+  console.log("Current orders in Location1: ", orders);
+});
+
+
 loginButton.addEventListener('click',()=>{
     var hiddenBackPage = document.getElementById("hiddenbackpage");
     //const location = document.getElementById("locations").value;
     const loginText = document.getElementById("login_input").value;
+    orderNumber = getOrderNumber();
+    //getData(db,location);
 
-    getData(db,location);
+    //Add Event click listeners to delete the items from order Queue
+    // for (let i = 0; i < menu.length; i++){
+    //     let addItemId = menu[i].id + "addBtn" // <button id="${item.id}addBtn">
+    //     menuItemElements[i] = document.getElementById(addItemId).addEventListener("click", () => { addToCart(menu[i]); });
+    //   }
+    for(let i = 0; i < orderQueueHTMLArray.length-1; i++){
+           orderQueueHTML += orderQueueHTMLArray[i]; 
+    }
 
     if(location == "location1" && loginText=="111"){
         alert("successful log in");
@@ -66,25 +125,11 @@ loginButton.addEventListener('click',()=>{
     }
 }); 
 
-const getData = onSnapshot(doc(db, location, "orders"), (doc) => {
-    console.log("Current data: ", doc.data());
-    //const ord = JSON.stringify(doc.data());
-    const orders = doc.data()["cart"];
-    //console.log(orders);
-    for (let i = 0; i<orders.length; i++){
-        // console.log(orders[i].title);
-        orderQueueHTML += `<h2>Location</h2><h3>Order1</h3><p>${orders[i].title}</p><h3>Order2</h3><p>item 2 description and stuff</p>`;
-       
-    }
-    //console.log(orderQueueHTML);
-    
-});
-
 //This function "returns" the orders and database stuff
-const ordersPage = () => {
-                        getData();
+// const ordersPage = () => {
+//                         getData();
                         
-                        };
+//                         };
 // document.addEventListener('readystatechange',function(){
 //     if (document.readyState === "complete") {
 //     login();
