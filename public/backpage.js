@@ -17,22 +17,6 @@ const firebaseConfig = initializeApp({
   
     measurementId: "G-81FFTX4SBY"
 });
-// read JSON object from file
-// fs.readFile('order.json', 'utf-8', (err, data) => {
-//     if (err) {
-//         throw err;
-//     }
-
-//     // parse JSON object
-//     const user = JSON.parse(data.toString());
-
-//     // print JSON object
-//     console.log(user);
-// });
-
-//get the location by doing something like
-//var location = user.location;
-
 
 //Backpage Login
 //These are required instances when using database
@@ -40,47 +24,31 @@ const firebaseConfig = initializeApp({
 //initializeApp();
 const db = getFirestore();
 const loginButton = document.getElementById("loginButton");
-const location = document.getElementById("locations").value;
+let locate = document.getElementById("locations").value;
 var orderNumber = 0;
-var orderQueueHTMLArray = [`<h2>Location: ${location}</h2>`];
+var orderQueueHTMLArray = [`<h2>Location: ${locate}</h2>`];
 var orderQueueHTML = ``;
-const getOrderNumber = onSnapshot(doc(db,location, "orderCount"), (doc) =>{
+const getOrderNumber = onSnapshot(doc(db,locate, "orderCount"), (doc) =>{
     orderNumber = doc.data().count;
     console.log("Order Count: ", doc.data().count);
 });
 
-//Add Event click listeners to delete the items from order Queue
-
-// const getData = onSnapshot(doc(db, location, "orders"), (doc) => {
-    
-//     console.log("Current data: ", doc.data());
-//     //const ord = JSON.stringify(doc.data());
-//     const itemsInOrder = doc.data()["cart"]; //array
-//     orderQueueHTML += `<h3>Order #:  ${orderNumber}, Name: ${itemsInOrder[0].name}</h3><p>Notes ${itemsInOrder[0].notes}</p><button id= ${orderNumber}>DELETE</button>`;
-//     //console.log(orders);
-//     for (let i = 0; i<itemsInOrder.length; i++){
-//         // console.log(orders[i].title);
-//         orderQueueHTML += `<p>${itemsInOrder[i].title}</p>`;
-//     }
-//     //console.log(orderQueueHTML);
-    
-// });
-
 //Better Version
-const q = collection(db, location); // q is Query
+const q = collection(db, locate); // q is Query
 const unsubscribe = onSnapshot(q, (querySnapshot) => {
   var orders = [];
   querySnapshot.forEach((doc) => {
       if(doc.id != "orderCount"){
-      //let itemsInOrder = doc.data()["cart"];
-      //console.log(itemsInOrder[0]);
+      let itemsInOrder = doc.data()["cart"];
+      console.log(itemsInOrder[0]);
       orders.push(doc.data()["cart"]);//push orders. [0] = doc.data()["cart"]
       //update orderQueue HTML to fit new order
-      orderQueueHTMLArray.push(`<h3>Order #:  ${doc.id}, Name: ${doc.data()["cart"][0].name}</h3><p>Notes ${doc.data()["cart"][0].notes}</p><button id= ${doc.id}>DELETE</button>`);
-      for(items in doc.data()["cart"]){
-          orderQueueHTMLArray.push(`<p></p>`);
-      }
-      //add Order details: Price+Title
+      orderQueueHTMLArray.push(`<h3>Order #:  ${doc.id}, Name: ${doc.data()["cart"][0].name}</h3><p>Notes ${doc.data()["cart"][0].notes}</p><p>Total: ${doc.data()["cart"][0].total}</p><button id= ${doc.id}>DELETE</button>`);
+      for(let i = 1; i < doc.data()["cart"].length; i++){
+        orderQueueHTMLArray.push(`<p>${doc.data()["cart"][i].title}</p><p>Quantity: ${doc.data()["cart"][i].quantity}</p>`);
+       }
+
+      //add Order details: Price+Title;
       //add EventListener
       //const removeOrderButton = document.getElementById(doc.id.toString());
     //   removeOrderButton.addEventListener('click', ()=> {
@@ -93,6 +61,7 @@ const unsubscribe = onSnapshot(q, (querySnapshot) => {
 
 
 loginButton.addEventListener('click',()=>{
+    let location = document.getElementById("locations").value;
     var hiddenBackPage = document.getElementById("hiddenbackpage");
     //const location = document.getElementById("locations").value;
     const loginText = document.getElementById("login_input").value;
