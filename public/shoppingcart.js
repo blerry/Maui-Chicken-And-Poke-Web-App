@@ -21,17 +21,14 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 //Change for Deleting an item
-function deleteCookie(cart) {
-  const date = new Date();
-  date.setTime(date.getTime() + (30*24*60*60*1000));//30 days,24hours,60 minutes
-  let expires = "expires=" + date.toUTCString();
-  //let cookie = name, '=', JSON.stringify(cart), '; domain=', window.location.host.toString(), '; path=/menu.html;'.join('');
-  //name, value, expiration
-  let cookie = "order" + "=" + JSON.stringify(cart) + ";" + expires + ";path=/";
-  //document.cookie = JSON.stringify(cart);
+function eraseCookie(cart) {
+  let cookie = "order" + "=";
   document.cookie = cookie;
   console.log(document.cookie);
 }
+const deleteCartBtn = document.getElementById("deleteCartBtn").addEventListener("click", ()=>{
+  eraseCookie();
+});
 //Works, returns the value of the Cookie, in this case a JSON String array of objects
 const getCookie = () => {
   let name = "order" + "=";
@@ -86,8 +83,7 @@ function displayCartItems(cart){
 
 window.addEventListener("DOMContentLoaded", () => {
   displayCartItems(cart);
-  //ADD Event Listeners after cart is displayed here for removing items
-
+  deleteCartBtn(); // Adding event listener to delete cart.
   //Pass Total after displaying Cart
   document.getElementById("orderTotal").innerHTML = "Total: $ " + total;
 });
@@ -118,9 +114,9 @@ async function addData(db){ //Add Data to the database to add to Order Queue
     cart.unshift({name: name,notes: notes,total:total});//Adding order details to beginning of cart
     const dataToAdd = async() => {await setDoc(doc(db, locate, orderNum.toString()), {cart}) }; //order is an object array {[]}
     dataToAdd(); // need to call
+    eraseCookie(); //erase cookie afterward
   }, 1000);//must wait 1sec to get the OrderNumber
 }
-
 const checkOutButton = document.getElementById("checkoutBtn").addEventListener("click",
 function loadCheckOutPage(){
   if(confirm("Proceed to checkout? ")){
