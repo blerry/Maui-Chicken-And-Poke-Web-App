@@ -21,14 +21,11 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 //Change for Deleting an item
-function eraseCookie(cart) {
-  let cookie = "order" + "=";
+function eraseCookie() {
+  let cookie = "order=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
   document.cookie = cookie;
   console.log(document.cookie);
 }
-const deleteCartBtn = document.getElementById("deleteCartBtn").addEventListener("click", ()=>{
-  eraseCookie();
-});
 //Works, returns the value of the Cookie, in this case a JSON String array of objects
 const getCookie = () => {
   let name = "order" + "=";
@@ -60,7 +57,7 @@ var total = 0.0;
 
 function displayCartItems(cart){
   let displayCart = cart.map(function (item) {
-    total += item.quantity * item.price;
+    total += (item.quantity * item.price).toFixed(2);
     //total += item.price;
     // console.log(item);
     return `<article class="menu-item">
@@ -83,7 +80,10 @@ function displayCartItems(cart){
 
 window.addEventListener("DOMContentLoaded", () => {
   displayCartItems(cart);
-  deleteCartBtn(); // Adding event listener to delete cart.
+  document.getElementById("deleteCartBtn").addEventListener('click', ()=>{
+    eraseCookie(); 
+    location.reload();
+  }); //event listener for deleting cart
   //Pass Total after displaying Cart
   document.getElementById("orderTotal").innerHTML = "Total: $ " + total;
 });
@@ -109,9 +109,18 @@ async function addData(db){ //Add Data to the database to add to Order Queue
   getOrderNum();
   setTimeout(()=>{ 
     console.log("Order # " + orderNum);//Rest of code goes here because of asyncy getOrderNum
-    const updateOrderCount = async() => {await setDoc(doc(db,locate,"orderCount"),{count:orderNum+1})};
+    let date = new Date();
+    date.setTime(date.getTime() + (30*24*60*60*1000));//30 days,24hours,60 minutes
+    date = date.toUTCString();
+
+
+    const updateOrderCount = async() => {await setDoc(doc(db,locate,"orderCount"),{
+      count:orderNum+1,
+      date:date  
+    })};
     updateOrderCount(); //Increment OrderNumber after we got it.
     cart.unshift({name: name,notes: notes,total:total});//Adding order details to beginning of cart
+    //WORKS but be careful
     const dataToAdd = async() => {await setDoc(doc(db, locate, orderNum.toString()), {cart}) }; //order is an object array {[]}
     dataToAdd(); // need to call
     eraseCookie(); //erase cookie afterward
