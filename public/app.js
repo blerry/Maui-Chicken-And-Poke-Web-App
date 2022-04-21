@@ -2,6 +2,9 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-app.js";
 import { getFirestore } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-firestore.js";
 
+
+
+
 const firebaseApp = initializeApp({
     apiKey: "AIzaSyC095wM6mpg04Sm8I_whR8h-3QXSe22-b4",
 
