@@ -28,11 +28,30 @@ const firebaseConfig = {
 //These are required instances when using database
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-
-//Here's an example of getting data from database
-async function getdata(db) {
-    const stuff = collection(db, 'test');
-    const stuffSnapshot = await getDocs(citiesCol);
-    const stuffList = citySnapshot.docs.map(doc => doc.data());
-    return stuffList;
-  }
+const checkDate=()=>{
+    let locate = document.getElementById("locations").value;
+    let orderNum = 0;
+    let date1 = "";
+    const getOrderNum = async() => {
+        let docSnap = await getDoc(doc(db,locate,"orderCount"));
+        orderNum = docSnap.data().count;
+        date1 = docSnap.data().date;
+        //console.log("The number" + orderNum);
+        };
+        getOrderNum();
+        setTimeout(()=>{ 
+        //console.log("Order # " + orderNum);//Rest of code goes here because of asyncy getOrderNum
+        let date2 = new Date();
+        let day1 = date1.split(" ");
+        //date.setTime(date.getTime() + (30*24*60*60*1000));//30 days,24hours,60 minutes
+        date2 = date2.toUTCString();
+        let day2 = date2.split(" ");
+        const updateOrderCount = async() => {await setDoc(doc(db,locate,"orderCount"),{
+        count:0,
+        date:date2  
+        })};
+        if (day1[1] < day2[1]){
+            updateOrderCount(); //If its a new day. OrderCount = 0 
+        } 
+    });
+}
