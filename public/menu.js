@@ -417,7 +417,6 @@ const menu = [
     price: 22.99,
     img: "./images/item-10.jpeg",
     desc: '2 heaping scoops of our delicious potato macaroni salad!',
-<<<<<<< HEAD
     content1: egg,
     content2: null,
     content3: null,
@@ -439,19 +438,6 @@ const menu = [
     content5: null,
     content6: null,
   },
-=======
-    content: 'Contains: egg',
-  }
-  // {
-  //   id: 29,
-  //   title: "Mac Salad",
-  //   category: "Sides",
-  //   price: 22.99,
-  //   img: "./images/item-10.jpeg",
-  //   desc: '2 heaping scoops of our delicious potato macaroni salad!',
-  //   content: 'Contains: egg',
-  // },
->>>>>>> c886744a75a1fc2e7939f21315ec85ae9a6c722e
 
 ];
 // get parent element
