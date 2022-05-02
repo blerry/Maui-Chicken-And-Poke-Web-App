@@ -20,6 +20,17 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
+var dairy = "./images/dairy.jpg";
+var egg = "./images/egg.png";
+var wheat = "./images/wheat.png";
+var sesame = "./images/sesame.png";
+var soy = "./images/soy.png";
+var shellfish = "./images/shellfish.png";
+var seafood = "./images/seafood.png";
+var pork = "./images/pork.png";
+var beef = "./images/beef.png";
+var poultry = "./images/poultry.jpg";
+
 const menu = [
   {
     id: 1,
@@ -28,7 +39,12 @@ const menu = [
     price: 7.99,
     img: "./images/item-1.jpeg",
     desc: 'All-natural, marinated chicken thighs grilled to perfection covered in our sweet teriyaki sauce and sesame seeds!',
-    content: 'Contains: poultry, sesame, soy',
+    content1: sesame,
+    content2: soy,
+    content3: poultry,
+    content4: null,
+    content5: null,
+    content6: null,
   },
   {
     id: 2,
@@ -37,7 +53,12 @@ const menu = [
     price: 10.99,
     img: "./images/item-2.jpeg",
     desc: 'Excellent certified Angus flap steak, marinated and grilled that will leave your mouth watering, topped with our sweet teriyaki sauce and sesame seeds!',
-    content:'Contains: beef, sesame, soy',
+    content1: sesame,
+    content2: soy,
+    content3: beef,
+    content4: null,
+    content5: null,
+    content6: null,
   },
   {
     id: 3,
@@ -46,7 +67,12 @@ const menu = [
     price: 6.99,
     img: "./images/item-3.jpeg",
     desc: 'The best of both teriyakis: chicken and steak!',
-    content: 'Contains: eggs, poultry, soy, sesame, wheat',
+    content1: egg,
+    content2: wheat,
+    content3: sesame,
+    content4: soy,
+    content5: beef,
+    content6: poultry,
   },
   {
     id: 4,
@@ -55,7 +81,12 @@ const menu = [
     price: 20.99,
     img: "./images/item-4.jpeg",
     desc: 'Tender white meat chicken, deep-fried and served with our tangy katsu sauce!',
-    content: 'Contains: eggs, poultry, soy, sesame, wheat',
+    content1: egg,
+    content2: wheat,
+    content3: sesame,
+    content4: soy,
+    content5: poultry,
+    content6: null,
   },
   {
     id: 5,
@@ -64,7 +95,12 @@ const menu = [
     price: 22.99,
     img: "./images/item-5.jpeg",
     desc: 'Both our delicious chicken katsu and scrumptious chicken teriyaki!',
-    content: 'Contains: eggs, poultry, soy, sesame, wheat',
+    content1: egg,
+    content2: wheat,
+    content3: sesame,
+    content4: soy,
+    content5: poultry,
+    content6: null,
   },
   {
     id: 6,
@@ -73,7 +109,12 @@ const menu = [
     price: 18.99,
     img: "./images/item-6.jpeg",
     desc: 'The perfect combination of crispy chicken and tender steak!',
-    content: 'Contains: beef, eggs, poultry, soy, sesame, wheat',
+    content1: egg,
+    content2: wheat,
+    content3: sesame,
+    content4: soy,
+    content5: beef,
+    content6: poultry,
   },
   {
     id: 7,
@@ -82,7 +123,12 @@ const menu = [
     price: 8.99,
     img: "./images/item-7.jpeg",
     desc: 'Boneless Fried Chicken fried and tossed with our sweet garlic sauce!',
-    content: 'Contains: eggs, poultry, soy, sesame, wheat',
+    content1: egg,
+    content2: wheat,
+    content3: sesame,
+    content4: soy,
+    content5: poultry,
+    content6: null,
   },
   {
     id: 8,
@@ -91,7 +137,12 @@ const menu = [
     price: 12.99,
     img: "./images/item-8.jpeg",
     desc: 'A beautifully grilled salmon filet topped with our sweet teriyaki sauce and sesame seeds!',
-    content: 'Contains: seafood, sesame, soy',
+    content1: sesame,
+    content2: soy,
+    content3: seafood,
+    content4: null,
+    content5: null,
+    content6: null,
   },
   {
     id: 9,
@@ -100,7 +151,12 @@ const menu = [
     price: 16.99,
     img: "./images/item-9.jpeg",
     desc: 'Delicious jumbo shrimp sautéed in their shells in butter and garlic and finished with a sprinkle of green onion!',
-    content: 'Contains: dairy, shellfish, sesame, soy',
+    content1: dairy,
+    content2: sesame,
+    content3: soy,
+    content4: shellfish,
+    content5: null,
+    content6: null,
   },
   {
     id: 10,
@@ -109,7 +165,12 @@ const menu = [
     price: 22.99,
     img: "./images/item-10.jpeg",
     desc: 'Our delicious Jumbo shrimp battered and fried until golden!',
-    content: 'Contains: shellfish, sesame, wheat',
+    content1: wheat,
+    content2: sesame,
+    content3: shellfish,
+    content4: null,
+    content5: null,
+    content6: null,
   },
   {
     id: 11,
@@ -118,7 +179,12 @@ const menu = [
     price: 22.99,
     img: "./images/item-10.jpeg",
     desc: 'Savory bacon and rice stir-fried along with egg and green onion!',
-    content: 'Contains: dairy, egg, pork, sesame, soy',
+    content1: dairy,
+    content2: egg,
+    content3: sesame,
+    content4: soy,
+    content5: pork,
+    content6: null,
   },
   {
     id: 12,
@@ -127,7 +193,12 @@ const menu = [
     price: 22.99,
     img: "./images/item-10.jpeg",
     desc: 'Yummy Spam and rice stir-fried along with egg and green onion!',
-    content: 'Contains: dairy, egg, pork, sesame, soy',
+    content1: dairy,
+    content2: egg,
+    content3: sesame,
+    content4: soy,
+    content5: pork,
+    content6: null,
   },
   {
     id: 13,
@@ -136,7 +207,12 @@ const menu = [
     price: 22.99,
     img: "./images/item-10.jpeg",
     desc: 'Delicious sliced Spam scrambled with egg and green onion and served on top of rice!',
-    content: 'Contains: dairy, egg, pork, sesame, soy',
+    content1: dairy,
+    content2: egg,
+    content3: sesame,
+    content4: soy,
+    content5: pork,
+    content6: null,
   },
   {
     id: 14,
@@ -145,7 +221,12 @@ const menu = [
     price: 22.99,
     img: "./images/item-10.jpeg",
     desc: 'Tender, marinated beef short ribs grilled to mouth-watering perfection!',
-    content: 'Contains: beef, sesame, soy',
+    content1: sesame,
+    content2: soy,
+    content3: beef,
+    content4: null,
+    content5: null,
+    content6: null,
   },
   {
     id: 15,
@@ -154,7 +235,12 @@ const menu = [
     price: 22.99,
     img: "./images/item-10.jpeg",
     desc: 'Bluefin ahi tuna mixed with avocado, green onion, togarashi, shoyu, and sesame oil, topped with seaweed salad and white ginger!',
-    content: 'Contains: seafood, sesame, soy',
+    content1: sesame,
+    content2: soy,
+    content3: seafood,
+    content4: null,
+    content5: null,
+    content6: null,
   },
   {
     id: 16,
@@ -163,7 +249,12 @@ const menu = [
     price: 22.99,
     img: "./images/item-10.jpeg",
     desc: 'Delicious salmon mixed with avocado, green onion, togarashi, shoyu, and sesame oil, topped with seaweed salad and white ginger!',
-    content: 'Contains: seafood, sesame, soy',
+    content1: sesame,
+    content2: soy,
+    content3: seafood,
+    content4: null,
+    content5: null,
+    content6: null,
   },
   {
     id: 17,
@@ -172,7 +263,12 @@ const menu = [
     price: 22.99,
     img: "./images/item-10.jpeg",
     desc: 'Both Tuna and Salmon mixed with avocado, green onion, togarashi, shoyu, and sesame oil, topped with seaweed salad and white ginger!',
-    content: 'Contains: seafood, sesame, soy',
+    content1: sesame,
+    content2: soy,
+    content3: seafood,
+    content4: null,
+    content5: null,
+    content6: null,
   },
   {
     id: 18,
@@ -181,7 +277,12 @@ const menu = [
     price: 22.99,
     img: "./images/item-10.jpeg",
     desc: 'Savory pork wonton with egg and served with a side of rice!',
-    content: 'Contains: egg, pork',
+    content1: egg,
+    content2: pork,
+    content3: null,
+    content4: null,
+    content5: null,
+    content6: null,
   },
   {
     id: 19,
@@ -190,7 +291,12 @@ const menu = [
     price: 22.99,
     img: "./images/item-10.jpeg",
     desc: 'Flavorful shrimp and salmon soup served with a side of rice!',
-    content: 'Contains: seafood, shellfish',
+    content1: shellfish,
+    content2: seafood,
+    content3: null,
+    content4: null,
+    content5: null,
+    content6: null,
   },
   {
     id: 20,
@@ -199,7 +305,12 @@ const menu = [
     price: 22.99,
     img: "./images/item-10.jpeg",
     desc: 'Crispy chicken katsu with tender ramen noodles in beef broth!',
-    content: 'Contains: beef, poultry, sesame, soy, wheat',
+    content1: wheat,
+    content2: sesame,
+    content3: soy,
+    content4: beef,
+    content5: poultry,
+    content6: null,
   },
   {
     id: 21,
@@ -208,7 +319,12 @@ const menu = [
     price: 22.99,
     img: "./images/item-10.jpeg",
     desc: 'Flavorful shrimp and salmon served with tender ramen noodles!',
-    content: 'Contains: seafood, sesame, shellfish, soy',
+    content1: sesame,
+    content2: soy,
+    content3: shellfish,
+    content4: seafood,
+    content5: null,
+    content6: null,
   }, 
   {
     id: 22,
@@ -217,7 +333,12 @@ const menu = [
     price: 22.99,
     img: "./images/item-10.jpeg",
     desc: 'Delicious marinated beef short rib served with tender ramen noodles!',
-    content: 'Contains: beef, sesame, soy',
+    content1: sesame,
+    content2: soy,
+    content3: beef,
+    content4: null,
+    content5: null,
+    content6: null,
   }, 
   {
     id: 23,
@@ -226,7 +347,12 @@ const menu = [
     price: 22.99,
     img: "./images/item-10.jpeg",
     desc: 'Romaine lettuce, hand-shredded white meat chicken, and wonton chips with our delicious sesame dressing!',
-    content: 'Contains: poultry, sesame, soy',
+    content1: sesame,
+    content2: soy,
+    content3: poultry,
+    content4: null,
+    content5: null,
+    content6: null,
   }, 
   {
     id: 24,
@@ -235,7 +361,12 @@ const menu = [
     price: 22.99,
     img: "./images/item-10.jpeg",
     desc: 'Feeds 12-14 people',
-    content: 'Contains: poultry, sesame, soy',
+    content1: sesame,
+    content2: soy,
+    content3: poultry,
+    content4: null,
+    content5: null,
+    content6: null,
   },
   {
     id: 25,
@@ -244,7 +375,12 @@ const menu = [
     price: 22.99,
     img: "./images/item-10.jpeg",
     desc: 'Feeds 23-25 people',
-    content: 'Contains: poultry, sesame, soy',
+    content1: sesame,
+    content2: soy,
+    content3: poultry,
+    content4: null,
+    content5: null,
+    content6: null,
   },
   {
     id: 26,
@@ -253,7 +389,12 @@ const menu = [
     price: 22.99,
     img: "./images/item-10.jpeg",
     desc: 'A Hawaiian classic: sliced Spam wrapped in rice and dried seaweed!',
-    content: 'Contains: pork, sesame',
+    content1: sesame,
+    content2: pork,
+    content3: null,
+    content4: null,
+    content5: null,
+    content6: null,
   },
   {
     id: 27,
@@ -262,7 +403,12 @@ const menu = [
     price: 22.99,
     img: "./images/item-10.jpeg",
     desc: 'Pork-filled and fried until crispy and served with our gyoza sauce!',
-    content: 'Contains: pork, sesame, soy',
+    content1: sesame,
+    content2: soy,
+    content3: pork,
+    content4: null,
+    content5: null,
+    content6: null,
   },
   {
     id: 28,
@@ -271,17 +417,27 @@ const menu = [
     price: 22.99,
     img: "./images/item-10.jpeg",
     desc: '2 heaping scoops of our delicious potato macaroni salad!',
-    content: 'Contains: egg',
-  }
-  // {
-  //   id: 29,
-  //   title: "Mac Salad",
-  //   category: "Sides",
-  //   price: 22.99,
-  //   img: "./images/item-10.jpeg",
-  //   desc: '2 heaping scoops of our delicious potato macaroni salad!',
-  //   content: 'Contains: egg',
-  // },
+    content1: egg,
+    content2: null,
+    content3: null,
+    content4: null,
+    content5: null,
+    content6: null,
+  },
+  {
+    id: 29,
+    title: "Mac Salad",
+    category: "Sides",
+    price: 22.99,
+    img: "./images/item-10.jpeg",
+    desc: '2 heaping scoops of our delicious potato macaroni salad!',
+    content1: egg,
+    content2: null,
+    content3: null,
+    content4: null,
+    content5: null,
+    content6: null,
+  },
 
 ];
 // get parent element
@@ -310,9 +466,14 @@ function diplayMenuItems(menuItems) {
               ${item.desc}
             </p>
 
-            <p class="item-content">
-              ${item.content}
-            </p>
+            <img src=${item.content1} alt="" class="item-content" />
+            <img src=${item.content2} alt="" class="item-content" />
+            <img src=${item.content3} alt="" class="item-content" />
+            <img src=${item.content4} alt="" class="item-content" />
+            <img src=${item.content5} alt="" class="item-content" />
+            <img src=${item.content6} alt="" class="item-content" />
+
+            
           </div>
           <div class="quanitiyInfo">
             <select name="quantity" id="${item.id}quantity">
