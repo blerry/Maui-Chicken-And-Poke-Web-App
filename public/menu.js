@@ -322,7 +322,7 @@ function diplayMenuItems(menuItems) {
               <option value="4">4</option>
               <option value="5">5</option>
             </select>
-            <button class="button2" id="${item.id}addBtn">Add to Cart</button>
+            <button class="button" id="${item.id}addBtn">Add to Cart</button>
           </div>
         </article>`;
   });
