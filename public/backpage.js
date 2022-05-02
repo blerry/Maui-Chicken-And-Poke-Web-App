@@ -29,22 +29,19 @@ var orderNumber = 0;
 var ordersInQueue = [];
 var orderQueueHTMLArray = [];
 var orderQueueHTML = ``;
-let date = new Date();
-date.setTime(date.getTime() + (30*24*60*60*1000));//30 days,24hours,60 minutes
-date = date.toUTCString();
+//let loggedIn = false;//flag to check if user is logged in
 
 const getOrderNumber = onSnapshot(doc(db,locate, "orderCount"), (doc) =>{
     orderNumber = doc.data().count;
-    //doc.data().date.split();
-    //if day > 1; reset orderCount to 0
     console.log("Order Count: ", doc.data().count);
 });
 
 //Better Version
-function getOrders(){
-    const q = collection(db, locate); // q is Query
+//If logged in is true, then pass the location to getOrders()
+function getOrders(loc){ //loc is location
+    const q = collection(db, loc); // q is Query
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
-    orderQueueHTMLArray.push(`<h2>Location: ${locate}</h2>`);
+    orderQueueHTMLArray.push(`<h2>Location: ${loc}</h2>`);
     querySnapshot.forEach((doc) => {
     if(doc.id != "orderCount"){
         let itemsInOrder = doc.data()["cart"];
@@ -90,6 +87,35 @@ const removeBtnListeners = async(orders,locate) => {
      }
 };
 
+//If its a new day then change orderCount to 0;
+const checkDate=()=>{
+    let locate = document.getElementById("locations").value;
+    let oNum = 0;
+    let date1 = "";
+    const getOrderNum = async() => {
+        let docSnap = await getDoc(doc(db,locate,"orderCount"));
+        oNum = docSnap.data().count;
+        date1 = docSnap.data().date;
+        //console.log("The number" + orderNum);
+        };
+        getOrderNum();
+        setTimeout(()=>{ 
+        //console.log("Order # " + orderNum);//Rest of code goes here because of asyncy getOrderNum
+        let date2 = new Date();
+        let day1 = date1.split(" ");
+        //date.setTime(date.getTime() + (30*24*60*60*1000));//30 days,24hours,60 minutes
+        date2 = date2.toUTCString();
+        let day2 = date2.split(" ");
+        const updateOrderCount = async() => {await setDoc(doc(db,locate,"orderCount"),{
+            count:0,
+            date:date2  
+        })};
+        if (day1[1] < day2[1]){
+            updateOrderCount(); //If its a new day. OrderCount = 0 
+        } 
+    });
+}
+
 loginButton.addEventListener('click',()=>{
     let locate = document.getElementById("locations").value;
     var hiddenBackPage = document.getElementById("hiddenbackpage");
@@ -102,23 +128,26 @@ loginButton.addEventListener('click',()=>{
 
     if(locate == "location1" && loginText=="111"){
         alert("successful log in");
-        getOrders();
+        getOrders(locate);
         //While True here? To make sure HTML updates on each new order?
 
         hiddenBackPage.innerHTML= orderQueueHTML; //update HTML
         removeBtnListeners(ordersInQueue,locate); //add button event listeners
+        checkDate();
     }
     else if(locate == "location2" && loginText=="222"){
-        getOrders();
+        getOrders(locate);
         alert("successful log in");
         hiddenBackPage.innerHTML= orderQueueHTML;
         removeBtnListeners(ordersInQueue,locate);
+        checkDate();
     }
     else if(locate == "location3" && loginText=="333"){
-        getOrders();
+        getOrders(locate);
         alert("successful log in");
         hiddenBackPage.innerHTML= orderQueueHTML;
         removeBtnListeners(ordersInQueue,locate);
+        checkDate();
     }
     else{
         alert("invalid log in");
