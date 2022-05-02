@@ -272,16 +272,16 @@ const menu = [
     img: "./images/item-10.jpeg",
     desc: '2 heaping scoops of our delicious potato macaroni salad!',
     content: 'Contains: egg',
-  },
-  {
-    id: 29,
-    title: "Mac Salad",
-    category: "Sides",
-    price: 22.99,
-    img: "./images/item-10.jpeg",
-    desc: '2 heaping scoops of our delicious potato macaroni salad!',
-    content: 'Contains: egg',
-  },
+  }
+  // {
+  //   id: 29,
+  //   title: "Mac Salad",
+  //   category: "Sides",
+  //   price: 22.99,
+  //   img: "./images/item-10.jpeg",
+  //   desc: '2 heaping scoops of our delicious potato macaroni salad!',
+  //   content: 'Contains: egg',
+  // },
 
 ];
 // get parent element
