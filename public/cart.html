@@ -20,10 +20,10 @@
   <body>
     <section class="topBar">
       <div class="topBar">
-        <h1 class="topBarFlex" ><a href="index.html">HOME</a></h1>
-        <h1 class ="topBarFlex"><a href="menu.html">MENU</a></h1>
+        <h1 class="topBarFlex"><a href="index.html"><strong>HOME</strong></a></h1>
+        <h1 class ="topBarFlex"><a href="menu.html"><strong>MENU</strong></a></h1>
         <img class="newLogo" src="logo_new.png" width = 400px height = 74px style="margin-top: 33px;">
-        <h1 class="topBarFlex"><a href ="about.html">ABOUT</a></h1>
+        <h1 class="topBarFlex"><a href ="about.html"><strong>ABOUT</strong></a></h1>
         <!-- shopping cart icon -->
         <i class="fa-solid fa-cart-shopping"><a href ="cart.html"></a> </i> 
       </div>
@@ -54,14 +54,14 @@
 
         <!-- Receipt-->
         <div class="container d-flex justify-content-center mt-50 mb-50">
-          <div class="row">
+          <div class="row ">
               <div class="col-md-12 text-right mb-3">
                   <button class="btn btn-primary" id="download"> download pdf</button>
               </div>
               <div class="col-md-12">
                   <div class="card" id="invoice">
                       <div class="card-header bg-transparent header-elements-inline">
-                          <h6 class="card-title text-primary">Receipt</h6>
+                          <h6 class="card-title"><strong>Receipt</strong></h6>
                       </div>
                       <div class="card-body">
                           <div class="row">
@@ -78,7 +78,7 @@
                               <div class="col-sm-6">
                                   <div class="mb-4 ">
                                       <div class="text-sm-right">
-                                          <h4 class="invoice-color mb-2 mt-md-2">Receipt #BBB1243</h4>
+                                          <h6 class="invoice-color mb-2 mt-md-2"><strong>Receipt #BBB1243</strong></h6>
                                           <ul class="list list-unstyled mb-0">
                                               <li>Date: <span class="font-weight-semibold">May 2, 2022</span></li>
                                           </ul>
@@ -87,19 +87,21 @@
                               </div>
                           </div>
                           <div class="d-md-flex flex-md-wrap">
-                              <div class="mb-4 mb-md-2 text-left"> <span class="text-muted">Order Details:</span>
+                              <!-- <div class="mb-4 mb-md-2 text-left"> <span class="text-muted">Order Details:</span> -->
+                              <div class="mb-4 mb-md-2 text-left">
                                   <ul class="list list-unstyled mb-0">
                                       <li>
-                                          <h5 class="my-2">Name for Order</h5>
+                                          <h6 class="my-2"><strong>Name for Order</strong></h6>
                                       </li>
                                       <li><span class="font-weight-semibold">Order notes</span></li>
                                   </ul>
                               </div>
-                              <div class="mb-2 ml-auto"> <span class="text-muted">Payment Details:</span>
+                              <!-- <div class="mb-2 ml-auto"> <span class="text-muted">Payment Details:</span> -->
+                              <div class="mb-2 ml-auto">
                                   <div class="d-flex flex-wrap wmin-md-400">
                                       <ul class="list list-unstyled mb-0 text-left">
                                           <li>
-                                              <h5 class="my-2">Shopping Cart</h5>
+                                              <h5 class="my-2"><strong>Shopping Cart</strong></h5>
                                           </li>
                                           <li>Chicken Teriyaki</li>
                                           <li>Chicken Teriyaki</li>
@@ -162,7 +164,7 @@
                       <div class="card-body">
                           <div class="d-md-flex flex-md-wrap">
                               <div class="pt-2 mb-3 wmin-md-400 ml-auto">
-                                  <h6 class="mb-3 text-left">Total due</h6>
+                                  <h6 class="mb-3 text-left"><span class="text-muted">Total Due</span></h6>
                                   <div class="table-responsive">
                                       <table class="table">
                                           <tbody>
@@ -171,13 +173,13 @@
                                                   <td class="text-right">$0.00</td>
                                               </tr>
                                               <tr>
-                                                  <th class="text-left">Tax: <span class="font-weight-normal">(25%)</span></th>
+                                                  <th class="text-left">Tax: <span class="font-weight-normal">(9.5%)</span></th>
                                                   <td class="text-right">$0.00</td>
                                               </tr>
                                               <tr>
                                                   <th class="text-left">Total:</th>
                                                   <td class="text-right text-primary">
-                                                      <h5 class="font-weight-semibold">$0.00</h5>
+                                                      <h5 class="font-weight-semibold total-color"><strong>$0.00</strong></h5>
                                                   </td>
                                               </tr>
                                           </tbody>
