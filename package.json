@@ -21,7 +21,8 @@
   },
   "homepage": "https://github.com/blerry/Maui-Chicken-And-Poke-Web-App#readme",
   "dependencies": {
-    "firebase": "^9.6.8"
+    "firebase": "^9.6.8",
+    "html2pdf.js": "^0.10.1"
   },
   "devDependencies": {
     "lite-server": "^2.6.1"
