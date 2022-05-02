@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menu</title>
+    <!-- font awesome kit (change to Maui's kit later, currently using Annie's) -->
+    <script src="https://kit.fontawesome.com/c62ea1b5c1.js" crossorigin="anonymous"></script> 
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    />
+    <!-- styles -->
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <section class="topBar">
+      <div class="topBar">
+        <h1 class="topBarFlex" ><a href="index.html">HOME</a></h1>
+        <h1 class ="topBarFlex"><a href="menu.html">MENU</a></h1>
+        <img class="newLogo" src="logo_new.png" width = 400px height = 74px style="margin-top: 33px;">
+        <h1 class="topBarFlex"><a href ="about.html">ABOUT</a></h1>
+        <!-- shopping cart icon -->
+        <i class="fa-solid fa-cart-shopping"><a href ="cart.html"></a> </i> 
+      </div>
+    </section>
+    <section class="menu">
+      <div class="section-center">
+      </div>
+        </section>
+        <button id="deleteCartBtn" >Delete Cart</button>
+        
+        <p>Name for Order: </p>
+        <input type="text" id="name" name="notes">
+        <p>Notes: </p>
+        <input type="text" id="notes" name="notes">
+        <h2 id="orderTotal">Total: $ 0.00</h2>
+        <!-- change later to load in check out page? -->
+        <label for="locations">Choose a Location:</label>
+      <select name="locations" id="locations">
+        <option value="location1">location1</option>
+        <option value="location2">location2</option>
+        <option value="location3">location3</option>
+      </select>
+        <button id="checkoutBtn" >CheckOut</button>
+        
+        <div id="receiptHTML">
+
+        </div>
+  </body>
+  
+  <script src="shoppingcart.js" type="module"></script>
+</html>

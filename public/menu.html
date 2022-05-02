@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Menu</title>
-    <!-- font-awesome -->
+    <!-- font awesome kit (change to Maui's kit later, currently using Annie's) -->
+    <script src="https://kit.fontawesome.com/c62ea1b5c1.js" crossorigin="anonymous"></script> 
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
@@ -17,8 +18,10 @@
       <div class="topBar">
         <h1 class="topBarFlex" ><a href="index.html">HOME</a></h1>
         <h1 class ="topBarFlex"><a href="menu.html">MENU</a></h1>
-        <img class="newLogo" src="logo_new.png" width="300" height="100" style="margin-top: 28px;">
+        <img class="newLogo" src="logo_new.png" width = 400px height = 74px style="margin-top: 33px;">
         <h1 class="topBarFlex"><a href ="about.html">ABOUT</a></h1>
+        <!-- shopping cart icon -->
+        <a href ="cart.html"><i class="fa-solid fa-cart-shopping"> </i></a> 
       </div>
     </section>
     <section class="menu">
@@ -32,26 +35,46 @@
         <body>
           <strong> Allergens: </strong> The below icons indicate menu items contain the following. <br>
         </body>
-        <img src="./dairy.jpg" alt="dairy" class="pref-logo" />
+        <img src="./images/dairy.jpg" alt="dairy" class="pref-logo" />
         <body class="pref-text">
           : Dairy&nbsp&nbsp
         </body> 
-        <img src="./egg.png" alt="egg" class="pref-logo" />
+        <img src="./images/egg.png" alt="egg" class="pref-logo" />
         <body class="pref-text">
           : Egg&nbsp&nbsp
         </body>
-        <img src="./wheat.png" alt="wheat" class="pref-logo" />
+        <img src="./images/wheat.png" alt="wheat" class="pref-logo" />
         <body class="pref-text">
           : Wheat&nbsp&nbsp
         </body>
-        <img src="./soy.png" alt="soy" class="pref-logo" />
+        <img src="./images/sesame.png" alt="sesame" class="pref-logo" />
         <body class="pref-text">
-          : Soy&nbsp&nbsp
+          : Sesame&nbsp&nbsp
         </body>
-        <img src="./gluten.png" alt="gluten" class="pref-logo" />
+        <img src="./images/soy.png" alt="soy" class="pref-logo" />
         <body class="pref-text">
-          : Gluten
+          : Soy
+        </body><br>
         </body>
+        <img src="./images/shellfish.png" alt="shellfish" class="pref-logo" />
+        <body class="pref-text">
+          : Shellfish&nbsp&nbsp
+        </body> 
+        <img src="./images/seafood.png" alt="seafood" class="pref-logo" />
+        <body class="pref-text">
+          : Seafood&nbsp&nbsp
+        </body>
+        <img src="./images/pork.png" alt="pork" class="pref-logo" />
+        <body class="pref-text">
+          : Pork&nbsp&nbsp
+        </body>
+        <img src="./images/beef.png" alt="beef" class="pref-logo" />
+        <body class="pref-text">
+          : Beef&nbsp&nbsp
+        </body>
+        <img src="./images/poultry.jpg" alt="poultry" class="pref-logo" />
+        <body class="pref-text">
+          : Poultry
       </section>
       <div class="btn-container">
         <!-- <button type="button" class="filter-btn" data-id="all">all</button>
@@ -63,59 +86,22 @@
           shakes
         </button> -->
       </div>
-      <!-- menu items -->
+
+
       <div class="section-center">
-        <!-- single item -->
-        <article class="menu-item">
-          <img src="./menu-item.jpeg" alt="menu item" class="photo" />
-          <div class="item-info">
-            <header>
-              <h4>buttermilk pancakes</h4>
-              <h4 class="price">$15</h4>
-            </header>
-            <p class="item-text">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Repudiandae, sint quam. Et reprehenderit fugiat nesciunt inventore
-              laboriosam excepturi! Quo, officia.
-            </p>
-          </div>
-        </article>
-        <!-- end of single item -->
-        <!-- single item -->
-        <article class="menu-item">
-          <img src="./menu-item.jpeg" alt="menu item" class="photo" />
-          <div class="item-info">
-            <header>
-              <h4>buttermilk pancakes</h4>
-              <h4 class="price">$15</h4>
-            </header>
-            <p class="item-text">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Repudiandae, sint quam. Et reprehenderit fugiat nesciunt inventore
-              laboriosam excepturi! Quo, officia.
-            </p>
-          </div>
-        </article>
-        <!-- end of single item -->
-        <!-- single item -->
-        <article class="menu-item">
-          <img src="./menu-item.jpeg" alt="menu item" class="photo" />
-          <div class="item-info">
-            <header>
-              <h4>buttermilk pancakes</h4>
-              <h4 class="price">$15</h4>
-            </header>
-            <p class="item-text">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Repudiandae, sint quam. Et reprehenderit fugiat nesciunt inventore
-              laboriosam excepturi! Quo, officia.
-            </p>
-          </div>
-        </article>
-        <!-- end of single item -->
+      </div>
+      <div id = "bottom-bar" class = "bottom-bar">
+        <p class = "footer-text">
+          Add On: Asparagus, 
+          Substitute Chinese Chicken Salad, 
+          Substitute White Meat Chicken, 
+          Side of Macaroni Salad, 
+          Add on 2pc fried shrimp
+        </p>
       </div>
     </section>
     <!-- javascript -->
     <script src="menu.js" type="module"></script>
+    <!-- <script src="shoppingcart.js" type="module"></script> -->
   </body>
 </html>

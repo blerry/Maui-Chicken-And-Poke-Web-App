@@ -23,84 +23,267 @@ const app = initializeApp(firebaseConfig);
 const menu = [
   {
     id: 1,
-    title: "Teriyaki Chicken",
-    category: "lunch",
+    title: "Chicken Teriyaki",
+    category: "Teriyaki",
     price: 7.99,
     img: "./images/item-1.jpeg",
-    desc: `I'm baby woke mlkshk wolf bitters live-edge blue bottle, hammock freegan copper mug whatever cold-pressed `,
+    desc: 'All-natural, marinated chicken thighs grilled to perfection covered in our sweet teriyaki sauce and sesame seeds!',
+    content: "./images/poultry.jpg" ,
+    // "./images/sesame.png" "./images/soy.png"
   },
   {
     id: 2,
-    title: "Garlic Shrimp",
-    category: "lunch",
+    title: "Steak Teriyaki",
+    category: "Teriyaki",
     price: 10.99,
     img: "./images/item-2.jpeg",
-    desc: `vaporware iPhone mumblecore selvage raw denim slow-carb leggings gochujang helvetica man braid jianbing. Marfa thundercats `,
+    desc: 'Excellent certified Angus flap steak, marinated and grilled that will leave your mouth watering, topped with our sweet teriyaki sauce and sesame seeds!',
+    content:'Contains: beef, sesame, soy',
   },
   {
     id: 3,
-    title: "godzilla milkshake",
-    category: "shakes",
+    title: "Combo (Chicken & Steak)",
+    category: "Teriyaki",
     price: 6.99,
     img: "./images/item-3.jpeg",
-    desc: `ombucha chillwave fanny pack 3 wolf moon street art photo booth before they sold out organic viral.`,
+    desc: 'The best of both teriyakis: chicken and steak!',
+    content: 'Contains: eggs, poultry, soy, sesame, wheat',
   },
   {
     id: 4,
-    title: "country delight",
-    category: "breakfast",
+    title: "Chicken Katsu",
+    category: "Katsu",
     price: 20.99,
     img: "./images/item-4.jpeg",
-    desc: `Shabby chic keffiyeh neutra snackwave pork belly shoreditch. Prism austin mlkshk truffaut, `,
+    desc: 'Tender white meat chicken, deep-fried and served with our tangy katsu sauce!',
+    content: 'Contains: eggs, poultry, soy, sesame, wheat',
   },
   {
     id: 5,
-    title: "egg attack",
-    category: "lunch",
+    title: "Chicken Katsu & Chicken Teriyaki",
+    category: "Katsu",
     price: 22.99,
     img: "./images/item-5.jpeg",
-    desc: `franzen vegan pabst bicycle rights kickstarter pinterest meditation farm-to-table 90's pop-up `,
+    desc: 'Both our delicious chicken katsu and scrumptious chicken teriyaki!',
+    content: 'Contains: eggs, poultry, soy, sesame, wheat',
   },
   {
     id: 6,
-    title: "oreo dream",
-    category: "shakes",
+    title: "Chicken Katsu & Steak Teriyaki",
+    category: "Katsu",
     price: 18.99,
     img: "./images/item-6.jpeg",
-    desc: `Portland chicharrones ethical edison bulb, palo santo craft beer chia heirloom iPhone everyday`,
+    desc: 'The perfect combination of crispy chicken and tender steak!',
+    content: 'Contains: beef, eggs, poultry, soy, sesame, wheat',
   },
   {
     id: 7,
-    title: "bacon overflow",
-    category: "breakfast",
+    title: "Sweet Hawaiian Fried Chicken",
+    category: "Katsu",
     price: 8.99,
     img: "./images/item-7.jpeg",
-    desc: `carry jianbing normcore freegan. Viral single-origin coffee live-edge, pork belly cloud bread iceland put a bird `,
+    desc: 'Boneless Fried Chicken fried and tossed with our sweet garlic sauce!',
+    content: 'Contains: eggs, poultry, soy, sesame, wheat',
   },
   {
     id: 8,
-    title: "american classic",
-    category: "lunch",
+    title: "Salmon Teriyaki",
+    category: "Fish",
     price: 12.99,
     img: "./images/item-8.jpeg",
-    desc: `on it tumblr kickstarter thundercats migas everyday carry squid palo santo leggings. Food truck truffaut  `,
+    desc: 'A beautifully grilled salmon filet topped with our sweet teriyaki sauce and sesame seeds!',
+    content: 'Contains: seafood, sesame, soy',
   },
   {
     id: 9,
-    title: "quarantine buddy",
-    category: "shakes",
+    title: "Garlic Shrimp",
+    category: "Fish",
     price: 16.99,
     img: "./images/item-9.jpeg",
-    desc: `skateboard fam synth authentic semiotics. Live-edge lyft af, edison bulb yuccie crucifix microdosing.`,
+    desc: 'Delicious jumbo shrimp sautéed in their shells in butter and garlic and finished with a sprinkle of green onion!',
+    content: 'Contains: Dairy, shellfish, sesame, soy',
   },
   {
     id: 10,
-    title: "bison steak",
-    category: "dinner",
+    title: "Fried Shrimp",
+    category: "Fish",
     price: 22.99,
     img: "./images/item-10.jpeg",
-    desc: `skateboard fam synth authentic semiotics. Live-edge lyft af, edison bulb yuccie crucifix microdosing.`,
+    desc: 'Our delicious Jumbo shrimp battered and fried until golden!',
+    content: 'Contains: shellfish, sesame, wheat',
   },
+  {
+    id: 11,
+    title: "Bacon Fried Rice",
+    category: "Island",
+    price: 22.99,
+    img: "./images/item-10.jpeg",
+    desc: 'Savory bacon and rice stir-fried along with egg and green onion!',
+    content: 'Contains: dairy, egg, pork, sesame, soy',
+  },
+  {
+    id: 12,
+    title: "Spam Fried Rice",
+    category: "Island",
+    price: 22.99,
+    img: "./images/item-10.jpeg",
+    desc: 'Yummy Spam and rice stir-fried along with egg and green onion!',
+    content: 'Contains: dairy, egg, pork, sesame, soy',
+  },
+  {
+    id: 13,
+    title: "Spam and Egg",
+    category: "Island",
+    price: 22.99,
+    img: "./images/item-10.jpeg",
+    desc: 'Delicious sliced Spam scrambled with egg and green onion and served on top of rice!',
+    content: 'Contains: dairy, egg, pork, sesame, soy',
+  },
+  {
+    id: 14,
+    title: "BBQ Short Rib Bowl(Kalbi)",
+    category: "Island",
+    price: 22.99,
+    img: "./images/item-10.jpeg",
+    desc: 'Tender, marinated beef short ribs grilled to mouth-watering perfection!',
+    content: 'Contains: beef, sesame, soy',
+  },
+  {
+    id: 15,
+    title: "Tuna Poke",
+    category: "Poke",
+    price: 22.99,
+    img: "./images/item-10.jpeg",
+    desc: 'Bluefin ahi tuna mixed with avocado, green onion, togarashi, shoyu, and sesame oil, topped with seaweed salad and white ginger!',
+    content: 'Contains: seafood, sesame, soy',
+  },
+  {
+    id: 16,
+    title: "Salmon Poke",
+    category: "Poke",
+    price: 22.99,
+    img: "./images/item-10.jpeg",
+    desc: 'Delicious salmon mixed with avocado, green onion, togarashi, shoyu, and sesame oil, topped with seaweed salad and white ginger!',
+    content: 'Contains: seafood, sesame, soy',
+  },
+  {
+    id: 17,
+    title: "Rainbow Poke",
+    category: "Poke",
+    price: 22.99,
+    img: "./images/item-10.jpeg",
+    desc: 'Both Tuna and Salmon mixed with avocado, green onion, togarashi, shoyu, and sesame oil, topped with seaweed salad and white ginger!',
+    content: 'Contains: seafood, sesame, soy',
+  },
+  {
+    id: 18,
+    title: "Wonton Soup",
+    category: "Soup",
+    price: 22.99,
+    img: "./images/item-10.jpeg",
+    desc: 'Savory pork wonton with egg and served with a side of rice!',
+    content: 'Contains: egg, pork',
+  },
+  {
+    id: 19,
+    title: "Seafood Soup",
+    category: "Soup",
+    price: 22.99,
+    img: "./images/item-10.jpeg",
+    desc: 'Flavorful shrimp and salmon soup served with a side of rice!',
+    content: 'Contains: seafood, shellfish',
+  },
+  {
+    id: 20,
+    title: "Chicken Katsu Ramen",
+    category: "Soup",
+    price: 22.99,
+    img: "./images/item-10.jpeg",
+    desc: 'Crispy chicken katsu with tender ramen noodles in beef broth!',
+    content: 'Contains: beef, poultry, sesame, soy, wheat',
+  },
+  {
+    id: 21,
+    title: "Seafood Ramen",
+    category: "Soup",
+    price: 22.99,
+    img: "./images/item-10.jpeg",
+    desc: 'Flavorful shrimp and salmon served with tender ramen noodles!',
+    content: 'Contains: seafood, sesame, shellfish, soy',
+  }, 
+  {
+    id: 22,
+    title: "Kalbi Ramen",
+    category: "Soup",
+    price: 22.99,
+    img: "./images/item-10.jpeg",
+    desc: 'Delicious marinated beef short rib served with tender ramen noodles!',
+    content: 'Contains: beef, sesame, soy',
+  }, 
+  {
+    id: 23,
+    title: "Chinese Chicken Salad",
+    category: "Salad",
+    price: 22.99,
+    img: "./images/item-10.jpeg",
+    desc: 'Romaine lettuce, hand-shredded white meat chicken, and wonton chips with our delicious sesame dressing!',
+    content: 'Contains: poultry, sesame, soy',
+  }, 
+  {
+    id: 24,
+    title: "Half-Tray Chinese Chicken Salad",
+    category: "Salad",
+    price: 22.99,
+    img: "./images/item-10.jpeg",
+    desc: 'Feeds 12-14 people',
+    content: 'Contains: poultry, sesame, soy',
+  },
+  {
+    id: 25,
+    title: "Full-Tray &nbsp&nbsp&nbsp Chinese Chicken Salad",
+    category: "Salad",
+    price: 22.99,
+    img: "./images/item-10.jpeg",
+    desc: 'Feeds 23-25 people',
+    content: 'Contains: poultry, sesame, soy',
+  },
+  {
+    id: 26,
+    title: "Spam Musubi &nbsp (2-piece)",
+    category: "Sides",
+    price: 22.99,
+    img: "./images/item-10.jpeg",
+    desc: 'A Hawaiian classic: sliced Spam wrapped in rice and dried seaweed!',
+    content: 'Contains: pork, sesame',
+  },
+  {
+    id: 27,
+    title: "Gyoza (6 piece)",
+    category: "Sides",
+    price: 22.99,
+    img: "./images/item-10.jpeg",
+    desc: 'Pork-filled and fried until crispy and served with our gyoza sauce!',
+    content: 'Contains: pork, sesame, soy',
+  },
+  {
+    id: 28,
+    title: "Mac Salad",
+    category: "Sides",
+    price: 22.99,
+    img: "./images/item-10.jpeg",
+    desc: '2 heaping scoops of our delicious potato macaroni salad!',
+    content: 'Contains: egg',
+  },
+  {
+    id: 29,
+    title: "Mac Salad",
+    category: "Sides",
+    price: 22.99,
+    img: "./images/item-10.jpeg",
+    desc: '2 heaping scoops of our delicious potato macaroni salad!',
+    content: 'Contains: egg',
+  },
+
 ];
 // get parent element
 const sectionCenter = document.querySelector(".section-center");
@@ -117,14 +300,30 @@ function diplayMenuItems(menuItems) {
 
     return `<article class="menu-item">
           <img src=${item.img} alt=${item.title} class="photo" />
-          <div class="item-info">
+          <div class="item-info" id="${item.id}">
             <header>
               <h4>${item.title}</h4>
               <h4 class="price">$${item.price}</h4>
+              <!-- You add a quantity and add button -->
+              
             </header>
             <p class="item-text">
               ${item.desc}
             </p>
+
+            <p class="item-content">
+              ${item.content}
+            </p>
+          </div>
+          <div class="quanitiyInfo">
+            <select name="quantity" id="${item.id}quantity">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <button id="${item.id}addBtn">Add to Cart</button>
           </div>
         </article>`;
   });
@@ -141,7 +340,7 @@ function displayMenuButtons() {
       }
       return values;
     },
-    ["all","other"]
+    ["all"]
   );
   const categoryBtns = categories
     .map(function (category) {
@@ -173,3 +372,77 @@ function displayMenuButtons() {
     });
   });
 }
+
+const menuItemElements = new Array(menu.length);
+
+  var cart = [];
+
+
+
+  //cart.push(menu[29]);
+  //button clicked. Find the button 
+
+  // Getting the menu item ID to find the elements then
+  // Adding Event Listeners to all menuItems
+  // And Passing the parameter menu[i] which is the item to be added to shopping cart
+  // Item is added to shopping cart when add to cart button is clicked. (look at addToCart())
+  function setCookie(cart) {
+    const date = new Date();
+    date.setTime(date.getTime() + (30*24*60*60*1000));//30 days,24hours,60 minutes
+    let expires = "expires=" + date.toUTCString();
+    //let cookie = name, '=', JSON.stringify(cart), '; domain=', window.location.host.toString(), '; path=/menu.html;'.join('');
+    //name, value, expiration
+    let cookie = "order" + "=" + JSON.stringify(cart) + ";" + expires + ";path=/";
+    //document.cookie = JSON.stringify(cart);
+    document.cookie = cookie;
+    console.log(document.cookie);
+  }
+  // function getCookie() {
+  //   //let decodedCookie = decodeURIComponent(document.cookie);
+  //   //let cart = JSON.parse(decodedCookie);
+  //   let name = "order"
+  //   let result = document.cookie.match(new RegExp(name + '=([^;]+)'));
+  //   result && (result = JSON.parse(result[1]));
+  //   return cart;
+  // }
+
+  function addToCart(itemSelected) {
+    //itemSelected = (menu[i]);
+    let quantitySelected = document.getElementById(itemSelected.id+"quantity").value; // id="${item.id}quantity">
+    console.log(quantitySelected);
+    let itemToAdd = {
+        id: itemSelected.id,
+        title: itemSelected.title,
+        img: itemSelected.img,
+        price: itemSelected.price,
+        quantity: quantitySelected
+    }
+    cart.push(itemToAdd);
+    console.log(cart[0]);
+    setCookie(cart);
+  }
+
+
+  async function addEventListeners(){
+    const resolveAfter2Seconds = (x) => { //We have to wait for menu elements to load first
+      return new Promise(resolve => {
+        setTimeout(() => {
+          resolve(x);
+        }, 2000);
+      });
+    }
+    await resolveAfter2Seconds(10);
+    for (let i = 0; i < menu.length; i++){
+      let addItemId = menu[i].id + "addBtn" // <button id="${item.id}addBtn">
+      menuItemElements[i] = document.getElementById(addItemId).addEventListener("click", () => { addToCart(menu[i]); });
+      //console.log(menu[i]);
+    }
+
+    //Get Cookies after even Listerners
+    //getCookie();
+
+  }
+
+  addEventListeners();
+
+
