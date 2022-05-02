@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-app.js";
-import { getFirestore,doc,setDoc } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-firestore.js";
+import { getFirestore,doc,setDoc,getDoc } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyC095wM6mpg04Sm8I_whR8h-3QXSe22-b4",
@@ -20,14 +20,9 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
-function setCookie(cart) {
-  const date = new Date();
-  date.setTime(date.getTime() + (30*24*60*60*1000));//30 days,24hours,60 minutes
-  let expires = "expires=" + date.toUTCString();
-  //let cookie = name, '=', JSON.stringify(cart), '; domain=', window.location.host.toString(), '; path=/menu.html;'.join('');
-  //name, value, expiration
-  let cookie = "order" + "=" + JSON.stringify(cart) + ";" + expires + ";path=/";
-  //document.cookie = JSON.stringify(cart);
+//Change for Deleting an item
+function eraseCookie() {
+  let cookie = "order=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
   document.cookie = cookie;
   console.log(document.cookie);
 }
@@ -57,10 +52,13 @@ var cart = getCookie();
 
 const db = getFirestore();
 
+var total = 0.0;
 //Time to Load these to the page.
 
 function displayCartItems(cart){
   let displayCart = cart.map(function (item) {
+    total += (item.quantity * item.price).toFixed(2);
+    //total += item.price;
     // console.log(item);
     return `<article class="menu-item">
           <img src=${item.img} alt=${item.title} class="photo" />
@@ -82,31 +80,63 @@ function displayCartItems(cart){
 
 window.addEventListener("DOMContentLoaded", () => {
   displayCartItems(cart);
-  //          ADD Event Listeners after cart is displayed here
-
+  document.getElementById("deleteCartBtn").addEventListener('click', ()=>{
+    eraseCookie(); 
+    location.reload();
+  }); //event listener for deleting cart
+  //Pass Total after displaying Cart
+  document.getElementById("orderTotal").innerHTML = "Total: $ " + total;
 });
+// Receipt Creation is here
+const loadReceipt = () => {
+  `<h2>Thank You for Shopping</h2>
+  <h2>Please wait for your order to be Called.</h2>`
+};
+
+//Use setTimeout to continue to add the order to database
+async function addData(db){ //Add Data to the database to add to Order Queue
+  const notes = document.getElementById("notes").value;
+  const name = document.getElementById("name").value;
+  const locate = document.getElementById("locations").value;
+  //cart.name = name; //Adding Name of person order to cart
+  //cart.notes = notes;
+  let orderNum = 0;
+  const getOrderNum = async() => {
+      let docSnap = await getDoc(doc(db,locate,"orderCount"));
+      orderNum = docSnap.data().count;
+      console.log("The number" + orderNum);
+    };
+  getOrderNum();
+  setTimeout(()=>{ 
+    console.log("Order # " + orderNum);//Rest of code goes here because of asyncy getOrderNum
+    let date = new Date();
+    date.setTime(date.getTime() + (30*24*60*60*1000));//30 days,24hours,60 minutes
+    date = date.toUTCString();
 
 
-//Function that displays CheckoutPage if clicked. 
-
-//Add Data to the database to add to Order Queue
-async function addData(db){
-  const dataToAdd = await setDoc(doc(db, "cities", "LA"), {
-    //Adding the Cart data here
-    name: "Long Beach",
-    state: "CA",
-    country: "USA"
-  });
+    const updateOrderCount = async() => {await setDoc(doc(db,locate,"orderCount"),{
+      count:orderNum+1,
+      date:date  
+    })};
+    updateOrderCount(); //Increment OrderNumber after we got it.
+    cart.unshift({name: name,notes: notes,total:total});//Adding order details to beginning of cart
+    //WORKS but be careful
+    const dataToAdd = async() => {await setDoc(doc(db, locate, orderNum.toString()), {cart}) }; //order is an object array {[]}
+    dataToAdd(); // need to call
+    eraseCookie(); //erase cookie afterward
+  }, 1000);//must wait 1sec to get the OrderNumber
 }
-
 const checkOutButton = document.getElementById("checkoutBtn").addEventListener("click",
 function loadCheckOutPage(){
   if(confirm("Proceed to checkout? ")){
     addData(db);
+    const receiptHTML = document.getElementById("receiptHTML");
+    const displayReceipt = loadReceipt;
+    //displayReceipt = displayReceipt.join("");
+    receiptHTML.innerHTML = displayReceipt;
     return "";
   }
   else{
     return;
   }
 });
-
