@@ -289,8 +289,6 @@ Menu
   text-align: center;
   object-fit: scale-down;
   height: 20px;
-  border: 0.14rem solid var(--clr-gold);
-  border-radius: var(--radius);
 }
 .fa-cart-shopping {
   font-size: x-large;
