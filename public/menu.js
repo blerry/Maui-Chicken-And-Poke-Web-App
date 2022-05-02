@@ -100,7 +100,7 @@ const menu = [
     price: 16.99,
     img: "./images/item-9.jpeg",
     desc: 'Delicious jumbo shrimp sautéed in their shells in butter and garlic and finished with a sprinkle of green onion!',
-    content: 'Contains: Dairy, shellfish, sesame, soy',
+    content: 'Contains: dairy, shellfish, sesame, soy',
   },
   {
     id: 10,
@@ -140,7 +140,7 @@ const menu = [
   },
   {
     id: 14,
-    title: "BBQ Short Rib Bowl(Kalbi)",
+    title: "BBQ Short Rib Bowl (Kalbi)",
     category: "Island",
     price: 22.99,
     img: "./images/item-10.jpeg",
@@ -248,7 +248,7 @@ const menu = [
   },
   {
     id: 26,
-    title: "Spam Musubi &nbsp (2-piece)",
+    title: "Spam Musubi &nbsp (2 pieces)",
     category: "Sides",
     price: 22.99,
     img: "./images/item-10.jpeg",
@@ -257,7 +257,7 @@ const menu = [
   },
   {
     id: 27,
-    title: "Gyoza (6 piece)",
+    title: "Gyoza (6 pieces)",
     category: "Sides",
     price: 22.99,
     img: "./images/item-10.jpeg",
@@ -322,7 +322,7 @@ function diplayMenuItems(menuItems) {
               <option value="4">4</option>
               <option value="5">5</option>
             </select>
-            <button id="${item.id}addBtn">Add to Cart</button>
+            <button class="button2" id="${item.id}addBtn">Add to Cart</button>
           </div>
         </article>`;
   });
