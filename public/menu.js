@@ -216,7 +216,7 @@ const menu = [
   },
   {
     id: 14,
-    title: "BBQ Short Rib Bowl(Kalbi)",
+    title: "BBQ Short Rib Bowl (Kalbi)",
     category: "Island",
     price: 22.99,
     img: "./images/item-10.jpeg",
@@ -384,7 +384,7 @@ const menu = [
   },
   {
     id: 26,
-    title: "Spam Musubi &nbsp (2-piece)",
+    title: "Spam Musubi &nbsp (2 pieces)",
     category: "Sides",
     price: 22.99,
     img: "./images/item-10.jpeg",
@@ -398,7 +398,7 @@ const menu = [
   },
   {
     id: 27,
-    title: "Gyoza (6 piece)",
+    title: "Gyoza (6 pieces)",
     category: "Sides",
     price: 22.99,
     img: "./images/item-10.jpeg",
@@ -417,6 +417,7 @@ const menu = [
     price: 22.99,
     img: "./images/item-10.jpeg",
     desc: '2 heaping scoops of our delicious potato macaroni salad!',
+<<<<<<< HEAD
     content1: egg,
     content2: null,
     content3: null,
@@ -438,6 +439,19 @@ const menu = [
     content5: null,
     content6: null,
   },
+=======
+    content: 'Contains: egg',
+  }
+  // {
+  //   id: 29,
+  //   title: "Mac Salad",
+  //   category: "Sides",
+  //   price: 22.99,
+  //   img: "./images/item-10.jpeg",
+  //   desc: '2 heaping scoops of our delicious potato macaroni salad!',
+  //   content: 'Contains: egg',
+  // },
+>>>>>>> c886744a75a1fc2e7939f21315ec85ae9a6c722e
 
 ];
 // get parent element
@@ -483,7 +497,7 @@ function diplayMenuItems(menuItems) {
               <option value="4">4</option>
               <option value="5">5</option>
             </select>
-            <button id="${item.id}addBtn">Add to Cart</button>
+            <button class="button2" id="${item.id}addBtn">Add to Cart</button>
           </div>
         </article>`;
   });
