@@ -1,6 +1,6 @@
 // Initialize Cloud Firestore through Firebase
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-app.js";
-import { getFirestore, doc,onSnapshot, collection,deleteDoc } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-firestore.js";
+import { getFirestore, doc,onSnapshot, collection,deleteDoc,getDoc } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-firestore.js";
 
 const firebaseConfig = initializeApp({
     apiKey: "AIzaSyC095wM6mpg04Sm8I_whR8h-3QXSe22-b4",
@@ -17,7 +17,6 @@ const firebaseConfig = initializeApp({
   
     measurementId: "G-81FFTX4SBY"
 });
-
 //Backpage Login
 //These are required instances when using database
 //const app = initializeApp(firebaseConfig);
@@ -40,22 +39,29 @@ const getOrderNumber = onSnapshot(doc(db,locate, "orderCount"), (doc) =>{
 //If logged in is true, then pass the location to getOrders()
 function getOrders(loc){ //loc is location
     const q = collection(db, loc); // q is Query
-    const unsubscribe = onSnapshot(q, (querySnapshot) => {
-    orderQueueHTMLArray.push(`<h2>Location: ${loc}</h2>`);
+    //const unsubscribe = 
+    onSnapshot(q, (querySnapshot) => {
+    //orderQueueHTMLArray.push(`<h2>Location: ${loc}</h2>`);
+    orderQueueHTMLArray.push(`<h2 id="hi"> HIIII</h2>`);
     querySnapshot.forEach((doc) => {
-    if(doc.id != "orderCount"){
+    if(doc.id != "orderCount" && doc){
         let itemsInOrder = doc.data()["cart"];
         console.log(itemsInOrder[0]);
         //update orderQueue HTML to fit new order
         orderQueueHTMLArray.push(`<div id=${doc.id}>`);//Start of Div
-        orderQueueHTMLArray.push(`<h3>Order #:  ${doc.id}, Name: ${doc.data()["cart"][0].name}</h3><p>Notes ${doc.data()["cart"][0].notes} Total: ${doc.data()["cart"][0].total}</p><button id= "btn${doc.id}">DELETE</button>`);
+        orderQueueHTMLArray.push(`<h3>Order #:  ${doc.id}, Name: ${doc.data()["cart"][0].name}</h3><p>Notes ${doc.data()["cart"][0].notes} Total: ${doc.data()["cart"][0].total}</p><button id= "btn${doc.id}"onclick="remove()">DELETE</button>`);
         ordersInQueue.push(doc.id);//each index is an order in queue
         for(let i = 1; i < doc.data()["cart"].length; i++){
             orderQueueHTMLArray.push(`<p>${doc.data()["cart"][i].title}</p><p>Quantity: ${doc.data()["cart"][i].quantity}</p>`);
         }
         orderQueueHTMLArray.push(`</div>`);//End of Div
-            }    
+            }  
         });
+        var hiddenBackPage = document.getElementById("hiddenbackpage");
+        for(let i = 0; i < orderQueueHTMLArray.length-1; i++){
+        orderQueueHTML += orderQueueHTMLArray[i]; //fills html elements with orders
+        }
+        hiddenBackPage.innerHTML= orderQueueHTML; //update HTML
     });
     }
 
@@ -67,6 +73,9 @@ const removeBtnListeners = async(orders,locate) => {
         return new Promise((resolve) => { setTimeout(() => {resolve(x); }, 1000);});
     }
     await resolveAfter2Seconds(10);    
+    document.getElementById("hi").addEventListener('click', ()=>{
+        document.getElementById("hi").hidden=true;
+    });
     for(let i = 0; i < orders.length;i++){
         let id =  orders[i].toString();
         //let buttonID = "btn"+ indexOf(orders[i]);
@@ -75,10 +84,11 @@ const removeBtnListeners = async(orders,locate) => {
         if(removeOrderButton != null){
             console.log("These items got listeners "+id);
              removeOrderButton.addEventListener('click', ()=> {
+                document.getElementById(id).hidden=true;//remove div, hide order from html
                 const deleteOrder = async() => {await deleteDoc(doc(db, locate, id));}; //deletes order from Database
                 deleteOrder(); // need to call
                 console.log("order deleted");
-               document.getElementById(id).hidden=true;//remove div, hide order from html
+               
                  });
         }else{
             console.log("These items are null "+id);
@@ -88,10 +98,7 @@ const removeBtnListeners = async(orders,locate) => {
 };
 
 //If its a new day then change orderCount to 0;
-const checkDate=()=>{
-    let locate = document.getElementById("locations").value;
-    let oNum = 0;
-    let date1 = "";
+const resetOrderNumber=()=>{
     const getOrderNum = async() => {
         let docSnap = await getDoc(doc(db,locate,"orderCount"));
         oNum = docSnap.data().count;
@@ -109,45 +116,44 @@ const checkDate=()=>{
         const updateOrderCount = async() => {await setDoc(doc(db,locate,"orderCount"),{
             count:0,
             date:date2  
-        })};
+        },1000)};
         if (day1[1] < day2[1]){
             updateOrderCount(); //If its a new day. OrderCount = 0 
         } 
     });
 }
-
+//resetOrderNumber();// before any log ins
 loginButton.addEventListener('click',()=>{
     let locate = document.getElementById("locations").value;
     var hiddenBackPage = document.getElementById("hiddenbackpage");
     const loginText = document.getElementById("login_input").value;
     orderNumber = getOrderNumber();
 
-    for(let i = 0; i < orderQueueHTMLArray.length-1; i++){
-           orderQueueHTML += orderQueueHTMLArray[i]; //fills html elements with orders
-    }
+    // for(let i = 0; i < orderQueueHTMLArray.length-1; i++){
+    //        orderQueueHTML += orderQueueHTMLArray[i]; //fills html elements with orders
+    // }
 
     if(locate == "location1" && loginText=="111"){
         alert("successful log in");
         getOrders(locate);
-        //While True here? To make sure HTML updates on each new order?
-
-        hiddenBackPage.innerHTML= orderQueueHTML; //update HTML
+        //setTimeout(2000);
+    
         removeBtnListeners(ordersInQueue,locate); //add button event listeners
-        checkDate();
+        
     }
     else if(locate == "location2" && loginText=="222"){
         getOrders(locate);
         alert("successful log in");
         hiddenBackPage.innerHTML= orderQueueHTML;
         removeBtnListeners(ordersInQueue,locate);
-        checkDate();
+        //checkDate();
     }
     else if(locate == "location3" && loginText=="333"){
         getOrders(locate);
         alert("successful log in");
         hiddenBackPage.innerHTML= orderQueueHTML;
         removeBtnListeners(ordersInQueue,locate);
-        checkDate();
+        //checkDate();
     }
     else{
         alert("invalid log in");

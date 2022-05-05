@@ -54,9 +54,9 @@
 
       <label for="locations">Choose a Location:</label>
       <select name="locations" id="locations">
-        <option value="location1">location1</option>
-        <option value="location2">location2</option>
-        <option value="location3">location3</option>
+        <option value="location1">2100 Redondo Beach Blvd. #A Torrance, CA 90504</option>
+        <option value="location2">4509 Sepulveda Blvd. Torrance, CA 90505</option>
+        <option value="location3">29217 S. Western Ave. Rancho Palos Verdes, CA 90275</option>
       </select>
       <label for="logintext">Log In:</label>
       <input type="text" id="login_input">
@@ -66,5 +66,10 @@
     </div>
     <!-- javascript -->
     <script src="backpage.js" type = "module"></script>
+    <script>
+      function remove(){
+        this.document.hidden = true;
+      }
+    </script>
   </body>
 </html>

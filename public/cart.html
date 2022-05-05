@@ -22,7 +22,7 @@
       <div class="topBar">
         <h1 class="topBarFlex"><a href="index.html"><strong>HOME</strong></a></h1>
         <h1 class ="topBarFlex"><a href="menu.html"><strong>MENU</strong></a></h1>
-        <img class="newLogo" src="logo_new.png" width = 400px height = 74px style="margin-top: 33px;">
+        <a href="index.html"><img class="newLogo" src="logo_new.png" width = 400px height = 74px style="margin-top: 33px;"></a>
         <h1 class="topBarFlex"><a href ="about.html"><strong>ABOUT</strong></a></h1>
         <!-- shopping cart icon -->
         <i class="fa-solid fa-cart-shopping"><a href ="cart.html"></a> </i> 
@@ -38,6 +38,7 @@
         <input type="text" id="name" name="notes">
         <p>Notes: </p>
         <input type="text" id="notes" name="notes">
+        <h3 id="taxTotal">Tax: $0.00</h3>
         <h3 id="orderTotal">Total: $ 0.00</h3>
         <!-- change later to load in check out page? -->
         <label for="locations">Choose a location:</label>
@@ -53,6 +54,8 @@
         </div>
 
         <!-- Receipt-->
+        <div id="receiptDiv">
+
         <div class="container d-flex justify-content-center mt-50 mb-50">
           <div class="row ">
               <div class="col-md-12 text-right mb-3">
@@ -69,18 +72,18 @@
                                   <div class="mb-4 pull-left">
   
                                       <ul class="list list-unstyled mb-0 text-left">
-                                          <li>Location address</li>
-                                          <li>Location city, state zip</li>
-                                          <li>Location phone number</li>
+                                          <li id="rLocation">Location address</li>
+                                          <!-- <li>Location city, state zip</li>
+                                          <li>Location phone number</li> -->
                                       </ul>
                                   </div>
                               </div>
                               <div class="col-sm-6">
                                   <div class="mb-4 ">
                                       <div class="text-sm-right">
-                                          <h6 class="invoice-color mb-2 mt-md-2"><strong>Receipt #BBB1243</strong></h6>
+                                          <h6 class="invoice-color mb-2 mt-md-2"><strong id="rOrderNum">Receipt #BBB1243</strong></h6>
                                           <ul class="list list-unstyled mb-0">
-                                              <li>Date: <span class="font-weight-semibold">May 2, 2022</span></li>
+                                              <li id="rDate">Date: <span class="font-weight-semibold"></span></li>
                                           </ul>
                                       </div>
                                   </div>
@@ -93,7 +96,7 @@
                                       <li>
                                           <h6 class="my-2"><strong>Name for Order</strong></h6>
                                       </li>
-                                      <li><span class="font-weight-semibold">Order notes</span></li>
+                                      <!-- <li><span class="font-weight-semibold">Order notes</span></li> -->
                                   </ul>
                               </div>
                               <!-- <div class="mb-2 ml-auto"> <span class="text-muted">Payment Details:</span> -->
@@ -103,63 +106,23 @@
                                           <li>
                                               <h5 class="my-2"><strong>Shopping Cart</strong></h5>
                                           </li>
-                                          <li>Chicken Teriyaki</li>
-                                          <li>Chicken Teriyaki</li>
-                                          <li>Chicken Teriyaki</li>
+                                          <!-- <li>c</li>
+                                          <li>c</li>
+                                          <li>c</li> -->
                                       </ul>
                                       <ul class="list list-unstyled text-right mb-0 ml-auto">
                                           <li>
                                               <h5 class="font-weight-semibold my-2">&nbsp;</h5>
                                           </li>
-                                          <li><span class="font-weight-semibold">$0.00</span></li>
+                                          <!-- <li><span class="font-weight-semibold">$0.00</span></li>
                                           <li>$0.00</li>
-                                          <li>$0.00</li>
+                                          <li>$0.00</li> -->
                                       </ul>
                                   </div>
                               </div>
                           </div>
                       </div>
                       <div class="table-responsive">
-                          <!-- <table class="table table-lg">
-                              <thead>
-                                  <tr>
-                                      <th>Description</th>
-                                      <th>Rate</th>
-                                      <th>Hours</th>
-                                      <th>Total</th>
-                                  </tr>
-                              </thead>
-                              <tbody>
-                                  <tr>
-                                      <td>
-                                          <h6 class="mb-0">Arts and design template</h6> <span class="text-muted">in
-                                              reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                                              pariatur.Duis aute irure dolor in reprehenderit</span>
-                                      </td>
-                                      <td>$120</td>
-                                      <td>180</td>
-                                      <td><span class="font-weight-semibold">$300</span></td>
-                                  </tr>
-                                  <tr>
-                                      <td>
-                                          <h6 class="mb-0">Template for desnging the arts</h6> <span class="text-muted">Lorem
-                                              ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</span>
-                                      </td>
-                                      <td>$140</td>
-                                      <td>100</td>
-                                      <td><span class="font-weight-semibold">$240</span></td>
-                                  </tr>
-                                  <tr>
-                                      <td>
-                                          <h6 class="mb-0">Technical support international</h6> <span class="text-muted">Lorem
-                                              ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</span>
-                                      </td>
-                                      <td>$250</td>
-                                      <td>$250</td>
-                                      <td><span class="font-weight-semibold">$500</span></td>
-                                  </tr>
-                              </tbody>
-                          </table> -->
                       </div>
                       <div class="card-body">
                           <div class="d-md-flex flex-md-wrap">
@@ -168,25 +131,25 @@
                                   <div class="table-responsive">
                                       <table class="table">
                                           <tbody>
-                                              <tr>
+                                              <!-- <tr>
                                                   <th class="text-left">Subtotal:</th>
                                                   <td class="text-right">$0.00</td>
-                                              </tr>
+                                              </tr> -->
                                               <tr>
-                                                  <th class="text-left">Tax: <span class="font-weight-normal">(9.5%)</span></th>
-                                                  <td class="text-right">$0.00</td>
+                                                  <th class="text-left">Tax: <span class="font-weight-normal">(9.25%)</span></th>
+                                                  <td id="rtaxTotal" class="text-right">$0.00</td>
                                               </tr>
                                               <tr>
                                                   <th class="text-left">Total:</th>
                                                   <td class="text-right text-primary">
-                                                      <h5 class="font-weight-semibold total-color"><strong>$0.00</strong></h5>
+                                                      <h5 class="font-weight-semibold total-color"><strong id="rTotal">$0.00</strong></h5>
                                                   </td>
                                               </tr>
                                           </tbody>
                                       </table>
                                   </div>
-                                  <div class="text-right mt-3"> <button type="button" class="btn btn-primary"><b><i class="fa fa-paper-plane-o mr-1"></i></b>
-                                          Send receipt</button> </div>
+                                  <!-- <div class="text-right mt-3"> <button type="button" class="btn btn-primary"><b><i class="fa fa-paper-plane-o mr-1"></i></b>
+                                          Send receipt</button> </div> -->
                               </div>
                           </div>
                       </div>
@@ -199,6 +162,8 @@
               </div>
           </div>
       </div>
+
+    </div>
       <!-- End Receipt-->
   </body>
   

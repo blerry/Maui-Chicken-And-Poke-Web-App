@@ -53,11 +53,12 @@ var cart = getCookie();
 const db = getFirestore();
 
 var total = 0.0;
+var taxTotal = 0.0;
 //Time to Load these to the page.
 
 function displayCartItems(cart){
   let displayCart = cart.map(function (item) {
-    total += (item.quantity * item.price).toFixed(2);
+    total += (item.quantity * item.price);
     //total += item.price;
     // console.log(item);
     return `<article class="menu-item">
@@ -85,13 +86,19 @@ window.addEventListener("DOMContentLoaded", () => {
     location.reload();
   }); //event listener for deleting cart
   //Pass Total after displaying Cart
+  //Hide Receipt
+  document.getElementById("receiptDiv").hidden = true;
+  taxTotal = parseFloat((total * 0.0925).toFixed(2));
+  total = parseFloat((total + taxTotal).toFixed(2));
+  document.getElementById("taxTotal").innerHTML = "Tax: $ " + taxTotal;
   document.getElementById("orderTotal").innerHTML = "Total: $ " + total;
+  //loadReceipt();
 });
 // Receipt Creation is here
-const loadReceipt = () => {
-  `<h2>Thank You for Shopping</h2>
-  <h2>Please wait for your order to be Called.</h2>`
-};
+// const loadReceipt = () => {
+//   `<h2>Thank You for Shopping</h2>
+//   <h2>Please wait for your order to be Called.</h2>`
+// };
 
 //Use setTimeout to continue to add the order to database
 async function addData(db){ //Add Data to the database to add to Order Queue
@@ -112,8 +119,7 @@ async function addData(db){ //Add Data to the database to add to Order Queue
     let date = new Date();
     date.setTime(date.getTime() + (30*24*60*60*1000));//30 days,24hours,60 minutes
     date = date.toUTCString();
-
-
+    
     const updateOrderCount = async() => {await setDoc(doc(db,locate,"orderCount"),{
       count:orderNum+1,
       date:date  
@@ -123,17 +129,24 @@ async function addData(db){ //Add Data to the database to add to Order Queue
     //WORKS but be careful
     const dataToAdd = async() => {await setDoc(doc(db, locate, orderNum.toString()), {cart}) }; //order is an object array {[]}
     dataToAdd(); // need to call
+    loadReceipt(orderNum);
     eraseCookie(); //erase cookie afterward
   }, 1000);//must wait 1sec to get the OrderNumber
 }
 const checkOutButton = document.getElementById("checkoutBtn").addEventListener("click",
 function loadCheckOutPage(){
   if(confirm("Proceed to checkout? ")){
+    //loadReceipt();
     addData(db);
-    const receiptHTML = document.getElementById("receiptHTML");
-    const displayReceipt = loadReceipt;
+    //const receiptHTML = document.getElementById("receiptHTML");
+    //const displayReceipt = loadReceipt;
     //displayReceipt = displayReceipt.join("");
-    receiptHTML.innerHTML = displayReceipt;
+    //receiptHTML.innerHTML = displayReceipt;
+
+
+
+
+    
     return "";
   }
   else{
@@ -141,11 +154,39 @@ function loadCheckOutPage(){
   }
 });
 
+//loadReceipt = 
+
 // Receipt
-window.onload = function () {
+//window.onload = function () {
+function loadReceipt(orderNum){
+  //document.hidden = false;
+  document.getElementById("receiptDiv").hidden = false;
+  const notes = document.getElementById("notes").value;
+  const name = document.getElementById("name").value;
+  let locat = document.getElementById("locations").value;
+  if (locat == "location1") locat = "2100 Redondo Beach Blvd. #A Torrance, CA 90504";
+  else if (locat == "location2") locat ="4509 Sepulveda Blvd. Torrance, CA 90505";
+  else if (locat == "location2") locat ="29217 S. Western Ave. Rancho Palos Verdes, CA 90275";
+  document.getElementById("rOrderNum").innerHTML = "Order #:" + orderNum;
+  let date = new Date();
+  document.getElementById("rDate").innerHTML = date;
+  document.getElementById("rLocation").innerHTML = locat;
+  document.getElementById("rtaxTotal").innerHTML = taxTotal;
+  document.getElementById("rTotal").innerHTML = total;
+  let cartItems = document.getElementsByClassName("list list-unstyled mb-0 text-left");
+  let htmlItems = "";
+  for(let i = 0; i < cartItems.length-1; i++){
+    htmlItems +="<li> - " + cart[i].title + "</li>";
+    //console.log(htmlItems);
+  }
+  cartItems[1].innerHTML = htmlItems;
+  document.getElementsByClassName("my-2")[0].innerHTML = "Name: " + name;
+  document.getElementById("rLocation").innerHTML = locat;
+
   document.getElementById("download")
       .addEventListener("click", () => {
-          const invoice = this.document.getElementById("invoice");
+          //const invoice = this.document.getElementById("invoice");
+          const invoice = document.getElementById("invoice");
           console.log(invoice);
           console.log(window);
           var opt = {
