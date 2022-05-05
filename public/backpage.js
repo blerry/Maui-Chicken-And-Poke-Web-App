@@ -42,7 +42,7 @@ function getOrders(loc){ //loc is location
     //const unsubscribe = 
     onSnapshot(q, (querySnapshot) => {
     //orderQueueHTMLArray.push(`<h2>Location: ${loc}</h2>`);
-    orderQueueHTMLArray.push(`<h2 id="hi"> HIIII</h2>`);
+    orderQueueHTMLArray.push(`<h2 id="hi">Orders</h2>`);
     querySnapshot.forEach((doc) => {
     if(doc.id != "orderCount" && doc){
         let itemsInOrder = doc.data()["cart"];

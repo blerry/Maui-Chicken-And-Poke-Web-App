@@ -65,7 +65,7 @@ function displayCartItems(cart){
           <img src=${item.img} alt=${item.title} class="photo" />
           <div class="item-info" id="${item.id}">
             <header>
-              <h4>${item.title}</h4>
+              <h4 class="title">${item.title}</h4>
               <h4 class="price">$${item.price}</h4>
               <h4 class="quantity">Quantity: ${item.quantity}</h4>
             </header> 
@@ -129,13 +129,14 @@ async function addData(db){ //Add Data to the database to add to Order Queue
     //WORKS but be careful
     const dataToAdd = async() => {await setDoc(doc(db, locate, orderNum.toString()), {cart}) }; //order is an object array {[]}
     dataToAdd(); // need to call
-    loadReceipt(orderNum);
+    loadReceipt(orderNum,cart);
     eraseCookie(); //erase cookie afterward
   }, 1000);//must wait 1sec to get the OrderNumber
 }
 const checkOutButton = document.getElementById("checkoutBtn").addEventListener("click",
 function loadCheckOutPage(){
   if(confirm("Proceed to checkout? ")){
+    //checkOutButton.hidden=true;
     //loadReceipt();
     addData(db);
     //const receiptHTML = document.getElementById("receiptHTML");
@@ -158,7 +159,7 @@ function loadCheckOutPage(){
 
 // Receipt
 //window.onload = function () {
-function loadReceipt(orderNum){
+function loadReceipt(orderNum,cartt){
   //document.hidden = false;
   document.getElementById("receiptDiv").hidden = false;
   const notes = document.getElementById("notes").value;
@@ -175,9 +176,11 @@ function loadReceipt(orderNum){
   document.getElementById("rTotal").innerHTML = total;
   let cartItems = document.getElementsByClassName("list list-unstyled mb-0 text-left");
   let htmlItems = "";
-  for(let i = 0; i < cartItems.length-1; i++){
-    htmlItems +="<li> - " + cart[i].title + "</li>";
-    //console.log(htmlItems);
+  console.log("THE CART")
+  console.log(cartt);
+  for(let i = 1; i < cartt.length; i++){
+    htmlItems +="<li> - " + cartt[i].title + "</li>";
+     
   }
   cartItems[1].innerHTML = htmlItems;
   document.getElementsByClassName("my-2")[0].innerHTML = "Name: " + name;
