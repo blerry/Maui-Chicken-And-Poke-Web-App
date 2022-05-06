@@ -526,7 +526,7 @@ function displayMenuButtons() {
       });
       if (category === "all") {
         diplayMenuItems(menu);
-        addEventListeners();
+        //addEventListeners();
       } else {
         diplayMenuItems(menuCategory);
         addEventListeners();
@@ -584,7 +584,10 @@ const menuItemElements = new Array(menu.length);
     console.log(cart[0]);
     setCookie(cart);
   }
-
+  const hasListener = (id) =>{ 
+    document.getElementById(id);
+    return true;
+  };
 
   async function addEventListeners(){
     const resolveAfter2Seconds = (x) => { //We have to wait for menu elements to load first
@@ -597,14 +600,12 @@ const menuItemElements = new Array(menu.length);
     await resolveAfter2Seconds(10);
     for (let i = 0; i < menu.length; i++){
       let addItemId = menu[i].id + "addBtn" // <button id="${item.id}addBtn">
-      if(document.getElementById(addItemId))
+      if(document.getElementById(addItemId) )//&& !hasListener(addItemId)
         menuItemElements[i] = document.getElementById(addItemId).addEventListener("click", () => { addToCart(menu[i]); });
       //console.log(menu[i]);
     }
-
     //Get Cookies after even Listerners
     //getCookie();
-
   }
 
   addEventListeners();

@@ -39,10 +39,11 @@ const getOrderNumber = onSnapshot(doc(db,locate, "orderCount"), (doc) =>{
 //If logged in is true, then pass the location to getOrders()
 function getOrders(loc){ //loc is location
     const q = collection(db, loc); // q is Query
+    var hiddenBackPage = document.getElementById("hiddenbackpage");
     //const unsubscribe = 
-    onSnapshot(q, (querySnapshot) => {
-    //orderQueueHTMLArray.push(`<h2>Location: ${loc}</h2>`);
     orderQueueHTMLArray.push(`<h2 id="hi">Orders</h2>`);
+    onSnapshot(q, (querySnapshot) => {
+        orderQueueHTMLArray = [];
     querySnapshot.forEach((doc) => {
     if(doc.id != "orderCount" && doc){
         let itemsInOrder = doc.data()["cart"];
@@ -57,11 +58,11 @@ function getOrders(loc){ //loc is location
         orderQueueHTMLArray.push(`</div>`);//End of Div
             }  
         });
-        var hiddenBackPage = document.getElementById("hiddenbackpage");
-        for(let i = 0; i < orderQueueHTMLArray.length-1; i++){
-        orderQueueHTML += orderQueueHTMLArray[i]; //fills html elements with orders
-        }
-        hiddenBackPage.innerHTML= orderQueueHTML; //update HTML
+        // for(let i = 0; i < orderQueueHTMLArray.length-1; i++){
+        //     orderQueueHTML += orderQueueHTMLArray[i]; //fills html elements with orders
+        // }
+        hiddenBackPage.innerHTML = orderQueueHTMLArray;
+        removeBtnListeners(ordersInQueue,locate);
     });
     }
 
@@ -73,9 +74,9 @@ const removeBtnListeners = async(orders,locate) => {
         return new Promise((resolve) => { setTimeout(() => {resolve(x); }, 1000);});
     }
     await resolveAfter2Seconds(10);    
-    document.getElementById("hi").addEventListener('click', ()=>{
-        document.getElementById("hi").hidden=true;
-    });
+    //document.getElementById("hi").addEventListener('click', ()=>{
+        //document.getElementById("hi").hidden=true;
+    //});
     for(let i = 0; i < orders.length;i++){
         let id =  orders[i].toString();
         //let buttonID = "btn"+ indexOf(orders[i]);
@@ -88,7 +89,7 @@ const removeBtnListeners = async(orders,locate) => {
                 const deleteOrder = async() => {await deleteDoc(doc(db, locate, id));}; //deletes order from Database
                 deleteOrder(); // need to call
                 console.log("order deleted");
-               
+                document.getElementById(id).hidden=true;
                  });
         }else{
             console.log("These items are null "+id);
@@ -125,33 +126,26 @@ const resetOrderNumber=()=>{
 //resetOrderNumber();// before any log ins
 loginButton.addEventListener('click',()=>{
     let locate = document.getElementById("locations").value;
-    var hiddenBackPage = document.getElementById("hiddenbackpage");
+    //var hiddenBackPage = document.getElementById("hiddenbackpage");
     const loginText = document.getElementById("login_input").value;
     orderNumber = getOrderNumber();
-
-    // for(let i = 0; i < orderQueueHTMLArray.length-1; i++){
-    //        orderQueueHTML += orderQueueHTMLArray[i]; //fills html elements with orders
-    // }
-
     if(locate == "location1" && loginText=="111"){
-        alert("successful log in");
         getOrders(locate);
-        //setTimeout(2000);
-    
+        alert("successful log in");
+        //hiddenBackPage.innerHTML= orderQueueHTMLArray;
         removeBtnListeners(ordersInQueue,locate); //add button event listeners
-        
     }
     else if(locate == "location2" && loginText=="222"){
         getOrders(locate);
         alert("successful log in");
-        hiddenBackPage.innerHTML= orderQueueHTML;
+        hiddenBackPage.innerHTML= "<h2>Orders</h2>"+orderQueueHTML;
         removeBtnListeners(ordersInQueue,locate);
         //checkDate();
     }
     else if(locate == "location3" && loginText=="333"){
         getOrders(locate);
         alert("successful log in");
-        hiddenBackPage.innerHTML= orderQueueHTML;
+        hiddenBackPage.innerHTML= "<h2>Orders</h2>"+orderQueueHTML;
         removeBtnListeners(ordersInQueue,locate);
         //checkDate();
     }
