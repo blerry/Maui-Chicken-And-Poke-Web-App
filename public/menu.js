@@ -37,7 +37,7 @@ const menu = [
     title: "Chicken Teriyaki",
     category: "Teriyaki",
     price: 7.99,
-    img: "./images/blah2.jpeg",
+    img: "./images/meh.jpg",
     desc: 'All-natural, marinated chicken thighs grilled to perfection covered in our sweet teriyaki sauce and sesame seeds!',
     content1: sesame,
     content2: soy,
@@ -51,7 +51,7 @@ const menu = [
     title: "Steak Teriyaki",
     category: "Teriyaki",
     price: 10.99,
-    img: "./images/i2.jpg",
+    img: "./images/i3.jpg",
     desc: 'Excellent certified Angus flap steak, marinated and grilled that will leave your mouth watering, topped with our sweet teriyaki sauce and sesame seeds!',
     content1: sesame,
     content2: soy,
@@ -65,7 +65,7 @@ const menu = [
     title: "Combo (Chicken & Steak)",
     category: "Teriyaki",
     price: 6.99,
-    img: "./images/i3.jpg",
+    img: "./images/i12.jpg",
     desc: 'The best of both teriyakis: chicken and steak!',
     content1: egg,
     content2: wheat,
@@ -121,7 +121,7 @@ const menu = [
     title: "Sweet Hawaiian Fried Chicken",
     category: "Katsu",
     price: 8.99,
-    img: "./images/i2.jpg",
+    img: "./images/i6.jpg",
     desc: 'Boneless Fried Chicken fried and tossed with our sweet garlic sauce!',
     content1: egg,
     content2: wheat,
@@ -163,7 +163,7 @@ const menu = [
     title: "Fried Shrimp",
     category: "Fish",
     price: 12.50,
-    img: "./images/blah.jpeg",
+    img: "./images/i13.jpg",
     desc: 'Our delicious Jumbo shrimp battered and fried until golden!',
     content1: wheat,
     content2: sesame,
@@ -177,7 +177,7 @@ const menu = [
     title: "Bacon Fried Rice",
     category: "Island",
     price: 10.99,
-    img: "./images/i6.jpg",
+    img: "./images/baconfriedrice.png",
     desc: 'Savory bacon and rice stir-fried along with egg and green onion!',
     content1: dairy,
     content2: egg,
@@ -191,7 +191,7 @@ const menu = [
     title: "Spam Fried Rice",
     category: "Island",
     price: 10.99,
-    img: "./images/i6.jpg",
+    img: "./images/spamfriedrice.png",
     desc: 'Yummy Spam and rice stir-fried along with egg and green onion!',
     content1: dairy,
     content2: egg,
@@ -205,7 +205,7 @@ const menu = [
     title: "Spam and Egg",
     category: "Island",
     price: 10.99,
-    img: "./images/item-4.jpeg",
+    img: "./images/spamandegg.png",
     desc: 'Delicious sliced Spam scrambled with egg and green onion and served on top of rice!',
     content1: dairy,
     content2: egg,
@@ -219,7 +219,7 @@ const menu = [
     title: "BBQ Short Rib Bowl (Kalbi)",
     category: "Island",
     price: 16.50,
-    img: "./images/i11.jpg",
+    img: "./images/bbqshortribs.png",
     desc: 'Tender, marinated beef short ribs grilled to mouth-watering perfection!',
     content1: sesame,
     content2: soy,
@@ -261,7 +261,7 @@ const menu = [
     title: "Rainbow Poke",
     category: "Poke",
     price: 12.99,
-    img: "./images/item-9.jpeg",
+    img: "./images/rainbowpoke.png",
     desc: 'Both Tuna and Salmon mixed with avocado, green onion, togarashi, shoyu, and sesame oil, topped with seaweed salad and white ginger!',
     content1: sesame,
     content2: soy,
@@ -275,7 +275,7 @@ const menu = [
     title: "Wonton Soup",
     category: "Soup",
     price: 10.99,
-    img: "./images/item-10.jpeg",
+    img: "./images/wontonsoup.png",
     desc: 'Savory pork wonton with egg and served with a side of rice!',
     content1: egg,
     content2: pork,
@@ -289,7 +289,7 @@ const menu = [
     title: "Seafood Soup",
     category: "Soup",
     price: 14.99,
-    img: "./images/item-1.jpeg",
+    img: "./images/seafoodramen.png",
     desc: 'Flavorful shrimp and salmon soup served with a side of rice!',
     content1: shellfish,
     content2: seafood,
@@ -303,7 +303,7 @@ const menu = [
     title: "Chicken Katsu Ramen",
     category: "Soup",
     price: 9.99,
-    img: "./images/item-2.jpeg",
+    img: "./images/katsuramen.jpeg",
     desc: 'Crispy chicken katsu with tender ramen noodles in beef broth!',
     content1: wheat,
     content2: sesame,
@@ -317,7 +317,7 @@ const menu = [
     title: "Seafood Ramen",
     category: "Soup",
     price: 14.99,
-    img: "./images/item-3.jpeg",
+    img: "./images/seafoodramen.png",
     desc: 'Flavorful shrimp and salmon served with tender ramen noodles!',
     content1: sesame,
     content2: soy,
@@ -331,7 +331,7 @@ const menu = [
     title: "Kalbi Ramen",
     category: "Soup",
     price: 9.99,
-    img: "./images/item-4.jpeg",
+    img: "./images/kabiramen.png",
     desc: 'Delicious marinated beef short rib served with tender ramen noodles!',
     content1: sesame,
     content2: soy,
@@ -387,7 +387,7 @@ const menu = [
     title: "Spam Musubi &nbsp (2 pieces)",
     category: "Sides",
     price: 4.50,
-    img: "./images/item-8.jpeg",
+    img: "./images/spammusubi.png",
     desc: 'A Hawaiian classic: sliced Spam wrapped in rice and dried seaweed!',
     content1: sesame,
     content2: pork,
@@ -401,7 +401,7 @@ const menu = [
     title: "Gyoza (6 pieces)",
     category: "Sides",
     price: 4.50,
-    img: "./images/i8.jpg",
+    img: "./images/gyoza.png",
     desc: 'Pork-filled and fried until crispy and served with our gyoza sauce!',
     content1: sesame,
     content2: soy,
@@ -429,7 +429,7 @@ const menu = [
     title: "Fountain Drink",
     category: "Sides",
     price: 2.99,
-    img: "./images/drink.png",
+    img: "./images/drink.jpg",
     desc: 'Coke, Sprite, Fanta, Tea',
     content1: null,
     content2: null,
@@ -526,8 +526,11 @@ function displayMenuButtons() {
       });
       if (category === "all") {
         diplayMenuItems(menu);
+        addEventListeners();
       } else {
         diplayMenuItems(menuCategory);
+        addEventListeners();
+        console.log("Event Listeners loaded");
       }
     });
   });
@@ -594,7 +597,8 @@ const menuItemElements = new Array(menu.length);
     await resolveAfter2Seconds(10);
     for (let i = 0; i < menu.length; i++){
       let addItemId = menu[i].id + "addBtn" // <button id="${item.id}addBtn">
-      menuItemElements[i] = document.getElementById(addItemId).addEventListener("click", () => { addToCart(menu[i]); });
+      if(document.getElementById(addItemId))
+        menuItemElements[i] = document.getElementById(addItemId).addEventListener("click", () => { addToCart(menu[i]); });
       //console.log(menu[i]);
     }
 
