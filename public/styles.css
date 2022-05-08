@@ -8,10 +8,6 @@ Fonts
   width: device-width;
   zoom: 1.0;
 }
-@-webkit-viewport{
-  width: device-width;
-  zoom: 1.0;
-}
 /*
 =============== 
 Variables
@@ -147,32 +143,6 @@ p {
   h4 {
     line-height: 1;
   }
-  .parallax{
-    background-image: url("images/banner.png");
-    height:100%;
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-  .innerParallax{
-    height:500px;
-    background-image:url("images/bg.png");
-    font-size:36px;
-    text-align:center;
-  }
-  .topBar{
-    display: flex;
-    flex-direction: row;
-    margin-top: 30px;
-    margin: auto;
-  }
-  .topBarFlex{
-    font-size: 1.75rem;
-    justify-content: space-between;
-    margin: 60px;
-    margin-bottom: 30px;
-  }
 }
 /*  global classes */
 .btn {
@@ -208,7 +178,8 @@ main {
 }
 .parallax{
   background-image: url("images/banner.png");
-  height:100%;
+  height:200vh;
+  width:100vw;
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -330,7 +301,7 @@ Menu
   font-size: x-large;
   position: relative;
   margin-top: 65px;
-  margin-left: 100px;
+  margin-left: 0px;
 }
 
 @media screen and (min-width: 768px) {
@@ -351,6 +322,37 @@ Menu
   .photo {
     height: 150px;
   }
+}
+@media only screen and (max-width:1000px){
+  .menu{
+    height:50vh !important;
+    width:50vh !important;
+  }
+  .parallax{
+    background-attachment: local !important;
+    height:50vh !important;
+    width:50vh !important;
+    }
+    .innerParallax{
+      height:50vh !important;
+      width:50vh !important;
+      font-size:36px;
+      text-align:center;
+      }
+      .topBar{
+        width:10vh !important;
+        margin:0px;
+      }
+      .topBarFlex{
+        width:10vh !important;
+        margin: 15px;
+        margin-top: 75px;
+        font-size: 0.75rem;
+      }
+      .newLogo{
+        width:30vw;
+        height:10vh;
+      }
 }
 
 .pref-logo {
