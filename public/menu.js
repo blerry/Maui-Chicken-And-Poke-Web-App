@@ -529,6 +529,7 @@ function displayMenuButtons() {
         //addEventListeners();
       } else {
         diplayMenuItems(menuCategory);
+        removeListeners();
         addEventListeners();
         console.log("Event Listeners loaded");
       }
@@ -607,7 +608,15 @@ const menuItemElements = new Array(menu.length);
     //Get Cookies after even Listerners
     //getCookie();
   }
-
+  function removeListeners(){
+  //Remove Event Listeners
+    for (let i = 0; i < menu.length; i++){
+      let addItemId = menu[i].id + "addBtn" // <button id="${item.id}addBtn">
+      if(document.getElementById(addItemId) )//&& !hasListener(addItemId)
+        menuItemElements[i] = document.getElementById(addItemId).removeEventListener("click", () => { addToCart(menu[i]); });
+      //console.log(menu[i]);
+      }
+  }
   addEventListeners();
 
 
