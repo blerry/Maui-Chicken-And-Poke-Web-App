@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/9.6.8/firebase-app-compat.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/9.6.8/firebase-firestore-compat.js"></script>
+ 
+    <!-- 
+      initialize the SDK after all desired features are loaded, set useEmulator to false
+      to avoid connecting the SDK to running emulators.
+    -->
+    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+    <title>Home</title>
+    <!-- font-awesome -->
+    <script src="https://kit.fontawesome.com/c62ea1b5c1.js" crossorigin="anonymous"></script> 
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    />
+    <!-- styles -->
+    <link rel="stylesheet" href="styles.css" />
+    
+  </head>
+  <body>
+      <section class="topBar">
+        <div class="topBar">
+          <h1 class="topBarFlex" ><a href="index.html">HOME</a></h1>
+          <h1 class ="topBarFlex"><a href="menu.html">MENU</a></h1>
+          <a href="index.html"><img class="newLogo" src="logo_new.png" width = 400px height = 74px style="margin-top: 33px;"></a>
+          <h1 class="topBarFlex"><a href ="about.html">ABOUT</a></h1>
+          <a href ="cart.html"><i class="fa-solid fa-cart-shopping"> </i></a>
+        </div>
+      </section>
+      <section class="home">
+      </section>
+        <div class ="parallax"></div>
+          <div class = "innerParallax">
+            <h2>HAPPY HOUR</h2>
+            <p>Mon - Thurs</p>
+            <p>12 PM - 6 PM</p>
+            <!--Change Margin later to flex-->
+            <img src="images/sampleAD.jpeg" width="200" height="200" style="margin: auto;" >
+            <h2>$7.99</h2>
+            </div>
+        
+        <!-- <div class ="parallax"></div> -->
+     
+      <!-- javascript -->
+      <script src="app.js" type="module"></script>
+   
+  </body>
+</html>
