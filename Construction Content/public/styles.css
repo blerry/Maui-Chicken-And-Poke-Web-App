@@ -370,7 +370,6 @@ Menu
   display: inline-block;
   text-align: center;
   margin-bottom: 1.25rem;
-<<<<<<< HEAD:public/styles.css
   color: var(--clr-grey-5);
 }
 
@@ -407,7 +406,6 @@ Menu
   border-radius: 50%;
   margin-left: auto;
   margin-right: auto;
-=======
   color: var(--clr-grey-1);
 }
 
@@ -519,5 +517,4 @@ a {
   display: block;
   line-height: 1;
   padding: .62503rem
->>>>>>> 986889e9e14bf78faee29785d643e17aa6f79749:Construction Content/public/styles.css
 }
