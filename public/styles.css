@@ -181,6 +181,7 @@ main {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
 .innerParallax{
   height:500px;
   background-image:url("images/bg.png");
@@ -335,4 +336,39 @@ Menu
   text-align: center;
   margin-bottom: 1.25rem;
   color: var(--clr-grey-5);
+}
+
+.about {
+  background: var(--clr-blue);
+  border: 0.25rem solid var(--clr-black);
+  border-radius: var(--radius);
+  padding: 1em;
+  position: relative;
+  margin: auto;
+  margin-left: 25%;
+  margin-right: 25%;
+}
+
+.about-text{
+  display:inline-block;
+  color: white;
+  text-align: center;
+  margin-top: 5%;
+  font-size: 20px;
+}
+
+.about-image{
+  display:inline-block;
+  vertical-align: top;
+  text-align: center;
+  object-fit: scale-down;
+  height: min-content;
+  width: min-content;
+}
+
+.yelp-logo{
+  border: 0.25rem solid var(--clr-black);
+  border-radius: 50%;
+  margin-left: auto;
+  margin-right: auto;
 }
