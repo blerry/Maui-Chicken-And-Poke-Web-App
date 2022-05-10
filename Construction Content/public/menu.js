@@ -457,14 +457,14 @@ function diplayMenuItems(menuItems) {
           <img src=${item.img} alt=${item.title} class="photo" />
           <div class="item-info" id="${item.id}">
             <header>
-              <h4>${item.title}</h4>
+              <h4 style="color: var(--clr-blue);">${item.title}</h4>
               <h4 class="price">$${item.price}</h4>
               <!-- You add a quantity and add button -->
               
             </header>
             <p class="item-text">
               ${item.desc}
-            </p>
+            </p><br>
 
             <img src=${item.content1} alt="" class="item-content" />
             <img src=${item.content2} alt="" class="item-content" />
