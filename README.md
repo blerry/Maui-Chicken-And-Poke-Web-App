@@ -8,4 +8,4 @@ The team consists of:<br/>
 This product was designed for CECS 443 supervised by Professor Jamal Madni.<br/>
 To access the deployed website, simply click the following url: https://maui-chicken-and-poke.web.app/
 
-<img src="public/logo_new.png" width="200" height="200" style="margin: auto;" >
+<img src="Construction Content/public/logo_new.png" width="200" height="200" style="margin: auto;" >
