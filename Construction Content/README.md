@@ -1,6 +1,6 @@
 # Maui-Chicken-And-Poke-Web-App
 This project consists of a web application for Maui Chicken developed by team TadBerry.
-The team consists of 
+The team consists of\n 
           -Nima Fathali Siah
           -Larry Delgado
           -Annie Tran
