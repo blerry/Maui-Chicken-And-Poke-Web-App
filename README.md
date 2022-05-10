@@ -7,3 +7,5 @@ The team consists of:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;-Luke Sunaoka<br/>
 This product was designed for CECS 443 supervised by Professor Jamal Madni.<br/>
 To access the deployed website, simply click the following url: https://maui-chicken-and-poke.web.app/
+
+<img src="images/sampleAD.jpeg" width="200" height="200" style="margin: auto;" >
