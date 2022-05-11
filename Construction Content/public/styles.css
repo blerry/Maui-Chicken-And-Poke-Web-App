@@ -219,6 +219,8 @@ Menu
 }
 .menu {
   padding: 5rem 0;
+  margin:200px;
+  margin-top: 15px;
 }
 .title {
   text-align: center;
@@ -328,6 +330,7 @@ Menu
   .menu{
     height:50vh !important;
     width:50vh !important;
+    margin:0;
   }
   .parallax{
     background-attachment: local !important;
@@ -353,6 +356,14 @@ Menu
       .newLogo{
         width:30vw;
         height:10vh;
+      }
+      .about{
+        width:100vw !important;
+        height:100vh !important;
+      }
+      .map{
+        width:100vw !important;
+        height:50vh !important;
       }
 }
 
@@ -382,6 +393,8 @@ Menu
   margin: auto;
   margin-left: 25%;
   margin-right: 25%;
+  width:50vw;
+  height:50vh;
 }
 
 .about-text{
@@ -399,6 +412,10 @@ Menu
   object-fit: scale-down;
   height: min-content;
   width: min-content;
+}
+.map{
+    width:300px;
+    height:250px;
 }
 
 .yelp-logo{
