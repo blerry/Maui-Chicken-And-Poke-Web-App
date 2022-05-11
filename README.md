@@ -6,7 +6,7 @@
 <h1> This project consists of a web application for Maui Chicken developed by team TadBerry. </h1>
 <h2> The team consists of: </h2>
 <ul>
-  <li>Larry Delgado</li>
+  <li>Team Lead: Larry Delgado</li>
   <li>Nima Fathali Siah</li> 
   <li>Annie Tran</li>
   <li>Luke Sunaoka</li>
