@@ -1,8 +1,5 @@
 # Maui-Chicken-And-Poke-Web-App
 
-<img src="Construction Content/public/logo_new.png" width="400" height="200" style="margin: auto;" >
-
-
 <h1> This project consists of a web application for Maui Chicken developed by team TadBerry. </h1>
 <h2> The team consists of: </h2>
 <ul>
