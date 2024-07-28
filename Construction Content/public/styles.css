@@ -377,6 +377,12 @@ Menu
   border-radius: var(--radius); */
 }
 
+#allergens {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .pref-text {
   display: inline-block;
   text-align: center;
